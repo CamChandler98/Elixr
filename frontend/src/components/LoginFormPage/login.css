@@ -27,7 +27,8 @@ main {
     text-align: justify;
 }
 form {
-    margin-bottom: 0px;
+    margin-top: 25%;
+    margin-bottom: 25%;
     box-sizing: border-box;
 }
 

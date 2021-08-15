@@ -23,12 +23,16 @@ function Navigation({ isLoaded }){
 
   return (
     <header>
-    <ul>
+    <div className = 'right-side'>
+    <ul className = 'nav-links'>
+        <NavLink exact to="/">
+          <h2> Elixr</h2>
+          </NavLink>
       <li>
-        <NavLink exact to="/">Home</NavLink>
         {isLoaded && sessionLinks}
       </li>
     </ul>
+    </div>
     </header>
   );
 }
