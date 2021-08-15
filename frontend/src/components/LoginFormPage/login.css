@@ -1,12 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Raleway:wght@300;500&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Charmonman:wght@400;700&family=Cookie&family=Mystery+Quest&display=swap');
+*{
+    font-size: 16px;
+}
 h2 {
     color: black;
+    font-family: 'Lato';
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    /* letter-spacing: 5px; */
 }
 body {
     background: rgb(143,69,182);
     background: linear-gradient(330deg, rgba(143,69,182,1) 0%, rgba(169,140,209,1) 100%);
-    min-height: 100vh;
     box-sizing: border-box;
 }
 
@@ -14,7 +21,9 @@ main {
     display: flex;
     flex-direction: column;
     margin: 30px;
+    min-height: 100vh;
     align-items: center;
+    justify-content: center;
     text-align: justify;
 }
 form {
@@ -29,9 +38,9 @@ form {
     color: #fff;
     border: none;
     outline: none;
-    background-color: #a44200;
+    background-color: #5F1A37;
     font-size: 14px;
-    border-radius: 10px;
+    border-radius: 6px;
     text-justify: center;
 }
 
@@ -44,13 +53,14 @@ form {
 }
 /*wrap form */
 .form-container {
-    width: 300px;
+    width: 500px;
     height: auto;
     display: flex;
     flex-direction: column;
     background-color: whitesmoke;
-    padding: 4% 3%;
-    box-shadow: 2px 2px 1px 0px rgba(0, 0, 0, 0.623);
+    padding: 10% 10%;
+    gap: 10px;
+    box-shadow: 2px 2px 1px 0px rgba(68, 67, 67, 0.623);
     box-sizing: border-box;
     border-radius: 3px;
 }
@@ -62,12 +72,13 @@ form {
 .form-group {
     display: flex;
     flex-direction: column;
-    margin: 5%;
+    margin: 2% 5%;
+    padding: 2%
 }
 
 /* give inputs .form-control class*/
 .form-control {
-    margin: 2px 0px 20px;
+    margin: 0px 0px 0px ;
     border: none;
     background: transparent;
     border-bottom: 1px solid rgb(32, 30, 30);
@@ -122,7 +133,7 @@ select.form-control {
     text-align: center;
 }
 
-.form-group > p {
+.form-group  p {
     text-align: center;
 }
 
