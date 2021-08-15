@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 
 import '../LoginFormPage/login.css'
@@ -25,18 +25,16 @@ function SignupFormPage() {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
         });
-    }
-    return setErrors(['Confirm Password field must be the same as the Password field']);
+    }else{
+    return setErrors(['Confirm Password field must be the same as the Password field']);}
   };
 
   return (
     <main>
       <div>
     <form onSubmit={handleSubmit} className = 'form-container'>
+      <div>
       <h2>Sign Up</h2>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
       <label className = 'form-group'>
         Email
         <input
@@ -46,8 +44,10 @@ function SignupFormPage() {
           className = 'form-control'
           placeholder = 'Enter email'
           required
-        />
+          />
       </label>
+      </div>
+      <div>
       <label className = 'form-group'>
         Username
         <input
@@ -59,6 +59,7 @@ function SignupFormPage() {
           required
         />
       </label>
+      </div>
       <label className = 'form-group'>
         Password
         <input
@@ -81,7 +82,15 @@ function SignupFormPage() {
           required
         />
       </label>
+      <ul>
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          </ul>
       <button className = 'form-button' type="submit">Sign Up</button>
+      <div className = 'form-group'>
+      <NavLink to = '/login'>
+        <p>Have an account? Log in here</p>
+      </NavLink>
+      </div>
     </form>
     </div>
     </main>
