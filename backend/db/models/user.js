@@ -29,6 +29,10 @@ module.exports = (sequelize, DataTypes) => {
         len: [60, 60]
       },
     },
+    private: {
+      type: DataTypes.BOOLEAN,
+      allowNull:false
+    }
   },
   {
     defaultScope: {
@@ -78,7 +82,7 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.signup = async function ({ username, email, password, private }) {
-    console.log(private)
+
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({
       username,
