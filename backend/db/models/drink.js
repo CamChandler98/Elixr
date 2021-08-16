@@ -31,6 +31,11 @@ module.exports = (sequelize, DataTypes) => {
     Drink.belongsTo(models.User, {foreignKey: 'creatorId'})
   };
 
+  Drink.prototype.toImportant = function(){
+    const {name,description,creatorId,categoryId} = this
+    return {name,description,creatorId,categoryId}
+  }
+
   Drink.makeDrink = async function ({name, description, creatorId, categoryId}) {
     const drink = await Drink.create({
       name,
@@ -38,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
       creatorId,
       categoryId
     })
-    return await Drink.findByPk(drink.id)
+    return drink.toImportant()
   }
   return Drink;
 };

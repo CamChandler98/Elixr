@@ -6,7 +6,7 @@ const router = express.Router();
 router.post('/', asyncHandler(async (req, res)=> {
     const {name, description, creatorId, categoryId } = req.body
     console.log('hit')
-    const drink = Drink.makeDrink( {name, description, creatorId, categoryId })
+    const drink = await Drink.makeDrink( {name, description, creatorId, categoryId })
     return res.json(drink)
 
 }))
