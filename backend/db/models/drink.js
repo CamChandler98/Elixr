@@ -18,17 +18,53 @@ module.exports = (sequelize, DataTypes) => {
     },
     creatorId: {
       allowNull: false,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     categoryId: {
       allowNull: false,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
   }, {});
   Drink.associate = function(models) {
     // associations can be defined here
-    Drink.belongsToMany(models.Category, {foreignKey: 'categoryId'})
-    Drink.belongsToMany(models.User, {foreignKey: 'creatorId'})
+    Drink.belongsTo(models.Category, {foreignKey: 'categoryId'})
+    Drink.belongsTo(models.User, {foreignKey: 'creatorId'})
   };
+
+  Drink.prototype.toImportant = function(){
+    const {name,description,creatorId,categoryId} = this
+    return {name,description,creatorId,categoryId}
+  }
+
+  Drink.makeDrink = async function ({name, description, creatorId, categoryId}) {
+    const drink = await Drink.create({
+      name,
+      description,
+      creatorId,
+      categoryId
+    })
+    return drink.toImportant()
+  }
+
+  Drink.getOne = async function(id){
+    const drink = await Drink.findByPk(id)
+    return drink
+  }
+
+  Drink.findDestroy = async function(id){
+    const drink = await Drink.findByPk(id)
+    let rubble = await drink.destroy()
+    return rubble
+  }
+
+  Drink.update = async function({id,name,description,categoryId}){
+    let drink = await Drink.getOne(id)
+    drink.name = name || drink.name
+    drink.description = description || drink.description
+    drink.categoryId = categoryId || drink.categoryId
+    await drink.save()
+    return drink.toImportant()
+  }
+
   return Drink;
 };
