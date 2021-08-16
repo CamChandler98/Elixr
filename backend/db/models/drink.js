@@ -18,17 +18,27 @@ module.exports = (sequelize, DataTypes) => {
     },
     creatorId: {
       allowNull: false,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     categoryId: {
       allowNull: false,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
   }, {});
   Drink.associate = function(models) {
     // associations can be defined here
-    Drink.belongsToMany(models.Category, {foreignKey: 'categoryId'})
-    Drink.belongsToMany(models.User, {foreignKey: 'creatorId'})
+    Drink.belongsTo(models.Category, {foreignKey: 'categoryId'})
+    Drink.belongsTo(models.User, {foreignKey: 'creatorId'})
   };
+
+  Drink.makeDrink = async function ({name, description, creatorId, categoryId}) {
+    const drink = await Drink.create({
+      name,
+      description,
+      creatorId,
+      categoryId
+    })
+    return await Drink.findByPk(drink.id)
+  }
   return Drink;
 };
