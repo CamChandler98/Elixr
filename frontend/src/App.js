@@ -6,6 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import DrinkCategoriesPage from "./components/DrinkComponents/DrinkCategoriesPage";
+import CategoryPage from "./components/DrinkComponents/Category-Page";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,11 +26,16 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+        </Switch>
+      )}
+      <Switch>
           <Route path = "/categories">
             <DrinkCategoriesPage />
           </Route>
-        </Switch>
-      )}
+        <Route path = {'/categories/:categoryId'}>
+          <CategoryPage />
+        </Route>
+      </Switch>
     </>
   );
 }
