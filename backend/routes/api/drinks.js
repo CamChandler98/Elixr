@@ -12,8 +12,7 @@ router.post('/', asyncHandler(async (req, res)=> {
 
 router.get('/', asyncHandler(async (req, res)=> {
     let allDrinks = await Drink.findAll()
-
-    res.json(allDrinks)
+   return res.json(allDrinks)
 }))
 
 router.get('/:id(\\d+)', asyncHandler( async (req,res)=> {
