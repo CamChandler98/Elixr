@@ -24,9 +24,11 @@ router.get('/:id(\\d+)', asyncHandler( async (req,res)=> {
 }))
 
 router.delete('/:id(\\d+)', asyncHandler( async (req,res)=> {
+ 
     const {id} = req.body
+
     const drink = await Drink.findDestroy(parseInt(id))
-    return res.status(204)
+    return res.json(drink)
 }))
 
 router.put('/:id(\\d+)', asyncHandler(async (req, res)=> {
