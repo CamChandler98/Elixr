@@ -27,6 +27,15 @@ export const getDrinks = () => async (dispatch) => {
     }
 }
 
+export const getOneDrink = (id) => async (dispatch) => {
+    const res = await fetch(`/api/drinks/${id}`)
+    if(res.ok){
+        const drink = await res.json()
+        dispatch(addOneDrink(drink))
+        return drink
+    }
+}
+
 export const addDrink = (drink) => async (dispatch) => {
     let res = await csrfFetch('/api/drinks',{
         method: 'post',
@@ -102,7 +111,7 @@ const drinkReducer = (state = {}, action) => {
             }
         }
         case DELETE_DRINK: {
-         
+
             let newState = {...state}
             let deleteTarget = newState[action.id]
             if(deleteTarget){
