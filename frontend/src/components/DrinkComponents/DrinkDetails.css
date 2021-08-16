@@ -1,0 +1,35 @@
+.drink-details{
+    margin: 20px 30%;
+    background-color:white;
+    padding: 2%;
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+}
+
+.drink-details-left{
+    display: flex;
+    align-items: center;
+}
+
+.drink-details-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid rgba(128, 128, 128, 0.692);
+}
+
+.total-ratings{
+    text-align: center;
+}
+.drink-details img{
+    height: 90px;
+    width: auto;
+}
+.drink-details h2{
+   font-size: 17px;
+   font-weight: normal;
+}
+.drink-details h3{
+    font-size: 14px;
+ }
