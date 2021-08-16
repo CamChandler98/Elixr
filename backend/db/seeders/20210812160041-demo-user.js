@@ -9,21 +9,24 @@ module.exports = {
         email: 'avalon@camelot.kingdom',
         username: 'Nimue',
         hashedPassword: bcrypt.hashSync('password'),
+        private: false
       },
       {
         email: faker.internet.email(),
         username: 'Agatha',
-        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        hashedPassword: bcrypt.hashSync('password'),
+        private: false
       },
       {
         email: faker.internet.email(),
         username: 'batildabladewitch',
-        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        hashedPassword: bcrypt.hashSync('password'),
+        private: false
       },
     ], {});
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Reviews', null, {truncate: true, cascade: true, restartIdentity: true});
+    return queryInterface.bulkDelete('Users', null, {truncate: true, cascade: true, restartIdentity: true});
 }
 };
