@@ -29,9 +29,10 @@ router.delete('/:id(\\d+)', asyncHandler( async (req,res)=> {
     return res.status(204)
 }))
 
-router.patch('/:id(\\d+)', asyncHandler(async (req, res)=> {
+router.put('/:id(\\d+)', asyncHandler(async (req, res)=> {
+    console.log('here')
+    console.log(req.body)
     const {name, description, categoryId, id } = req.body
-
     const drink = await Drink.update( {id, name, description,categoryId })
     return res.json(drink)
 }))

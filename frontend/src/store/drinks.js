@@ -28,6 +28,22 @@ export const addDrink = (drink) => async (dispatch) => {
         body: JSON.stringify(drink)
     })
 
+
+    if(res.ok){
+        let newDrink = await res.json()
+        dispatch(addOneDrink(newDrink))
+        return newDrink
+    }
+}
+
+export const editDrink = (drink) => async (dispatch) => {
+    console.log(drink)
+    let res = await csrfFetch(`/api/drinks/${drink.id}`,{
+        method: 'put',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(drink)
+    })
+    console.log('res',res)
     if(res.ok){
         let newDrink = await res.json()
         dispatch(addOneDrink(newDrink))
@@ -56,8 +72,15 @@ const drinkReducer = (state = {}, action) => {
                     ...state,
                     [action.drink.id] : action.drink
                 }
+            }else{
+                return{
+                    ...state,
+                    [action.drink.id]: {
+                        ...state[action.drink.id],
+                        ...action.drink
+                    }
+                }
             }
-            return state
         }
         default:
             return state
