@@ -1,3 +1,4 @@
+import { csrfFetch } from './csrf';
 const LOAD = 'drinks/load';
 const ADD_DRINK = 'drinks/addDrink'
 
@@ -21,7 +22,7 @@ export const getDrinks = () => async (dispatch) => {
 }
 
 export const addDrink = (drink) => async (dispatch) => {
-    let res = await fetch ('/api/drinks',{
+    let res = await csrfFetch('/api/drinks',{
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(drink)
@@ -37,7 +38,7 @@ export const addDrink = (drink) => async (dispatch) => {
 
 
 
-const drinkReducer = (state = {drinks:{}}, action) => {
+const drinkReducer = (state = {}, action) => {
     switch(action.type){
         case LOAD: {
             let drinks = action.list.reduce((accum,drink) => {
@@ -53,14 +54,10 @@ const drinkReducer = (state = {drinks:{}}, action) => {
             if(!state[action.drink.id]){
                 return{
                     ...state,
-                    [action.drink.id] :action.drink
+                    [action.drink.id] : action.drink
                 }
-            }else{
-                // return{
-                //     ...state,
-                //     [action.dr]
-                // }
             }
+            return state
         }
         default:
             return state

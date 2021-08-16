@@ -32,8 +32,8 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   Drink.prototype.toImportant = function(){
-    const {name,description,creatorId,categoryId} = this
-    return {name,description,creatorId,categoryId}
+    const {id,name,description,creatorId,categoryId} = this
+    return {id,name,description,creatorId,categoryId}
   }
 
   Drink.makeDrink = async function ({name, description, creatorId, categoryId}) {
