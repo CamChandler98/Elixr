@@ -2,7 +2,7 @@
 const faker = require('faker')
 const bcrypt = require('bcryptjs');
 
-const genUser = (genNum) => {
+ const genUser = (genNum) => {
     faker.seed(200)
     let usersArr = []
     for(let i = 0; i < genNum; i++ ){
@@ -13,18 +13,14 @@ const genUser = (genNum) => {
 
         let private = `${Math.round(Math.random())}`
 
-        let createdAt = new Date()
-
-        let updatedAt = new Date()
-
         usersArr.push({
             username,
             email,
             hashedPassword,
             private,
-            createdAt,
-            updatedAt
         })
     }
+    return usersArr
+}
 
-    return users
+module.exports = {genUser}
