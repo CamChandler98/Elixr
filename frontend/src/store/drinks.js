@@ -1,6 +1,7 @@
 import { csrfFetch } from './csrf';
 const LOAD = 'drinks/load';
 const ADD_DRINK = 'drinks/addDrink'
+const DELETE_DRINK = 'drinks/deleteDrink'
 
 const load = list => ({
     type: LOAD,
@@ -11,6 +12,11 @@ const load = list => ({
 const addOneDrink = drink =>({
     type: ADD_DRINK,
     drink
+})
+
+const deleteOneDrink = (id) => ({
+    type: DELETE_DRINK,
+    id
 })
 
 export const getDrinks = () => async (dispatch) => {
@@ -37,17 +43,30 @@ export const addDrink = (drink) => async (dispatch) => {
 }
 
 export const editDrink = (drink) => async (dispatch) => {
-    console.log(drink)
+
     let res = await csrfFetch(`/api/drinks/${drink.id}`,{
         method: 'put',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(drink)
     })
-    console.log('res',res)
+
     if(res.ok){
         let newDrink = await res.json()
         dispatch(addOneDrink(newDrink))
         return newDrink
+    }
+}
+
+export const deleteDrink = (id) => async (dispatch) =>{
+    let res = await csrfFetch(`/api/drinks/${id}`,{
+        method: 'delete',
+        body: JSON.stringify({id})
+    })
+
+
+    if(res.ok){
+        dispatch(deleteOneDrink(id))
+        return
     }
 }
 
@@ -81,6 +100,16 @@ const drinkReducer = (state = {}, action) => {
                     }
                 }
             }
+        }
+        case DELETE_DRINK: {
+         
+            let newState = {...state}
+            let deleteTarget = newState[action.id]
+            if(deleteTarget){
+                delete newState[action.id]
+                return newState
+            }
+            return state
         }
         default:
             return state
