@@ -45,5 +45,10 @@ module.exports = (sequelize, DataTypes) => {
     })
     return drink.toImportant()
   }
+
+  Drink.getOne = async function(id){
+    const drink = await Drink.findByPk(id)
+    return drink
+  }
   return Drink;
 };

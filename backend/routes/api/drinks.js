@@ -11,5 +11,12 @@ router.post('/', asyncHandler(async (req, res)=> {
 
 }))
 
+router.get('/:id(\\d+)', asyncHandler( async (req,res)=> {
+    console.log(req.body)
+    const {id} = req.body
+    const drink = await Drink.getOne(parseInt(id))
+    return res.json(drink)
+}))
+
 
 module.exports = router
