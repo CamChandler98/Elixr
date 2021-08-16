@@ -1,6 +1,7 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
-const {Category, Drink} = require('../../db/models')
+const {Category, Drink} = require('../../db/models');
+const { route } = require('./drinks');
 const router = express.Router();
 
 router.get('/', asyncHandler( async (req,res) => {
@@ -8,12 +9,13 @@ router.get('/', asyncHandler( async (req,res) => {
     return res.json(categories)
 }))
 
-router.get('/:id(\\d)/drinks', asyncHandler ( async (req,res) => {
+router.get('/:categoryId(\\d)/drinks', asyncHandler ( async (req,res) => {
     let {categoryId} = req.params
-
     let categoryDrinks = await Drink.findAll({
-        where:
+        where:{
+            categoryId
+        }
     })
+    return res.json(categoryDrinks)
 }))
-
-export default router
+module.exports = router
