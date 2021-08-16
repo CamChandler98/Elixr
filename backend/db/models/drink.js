@@ -50,5 +50,21 @@ module.exports = (sequelize, DataTypes) => {
     const drink = await Drink.findByPk(id)
     return drink
   }
+
+  Drink.findDestroy = async function(id){
+    const drink = await Drink.findByPk(id)
+    let rubble = await drink.destroy()
+    return rubble
+  }
+
+  Drink.update = async function({id,name,description,categoryId}){
+    let drink = await Drink.getOne(id)
+    drink.name = name || drink.name
+    drink.description = description || drink.description
+    drink.categoryId = categoryId || drink.categoryId
+    await drink.save()
+    return drink.toImportant()
+  }
+
   return Drink;
 };
