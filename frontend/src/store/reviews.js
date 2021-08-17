@@ -38,6 +38,8 @@ export const addReview = (review) => async (dispatch) => {
     formData.append('rating',rating)
     formData.append('content',content)
     if(image) formData.append("image",image)
+
+    consolew.log('here')
     const res = await csrfFetch(`/api/reviews`, {
         method: "POST",
         headers: {
@@ -46,8 +48,8 @@ export const addReview = (review) => async (dispatch) => {
         body: formData,
       });
 
-      const review = await res.json();
-      dispatch(add(review));
+      const newReview = await res.json();
+      dispatch(add(newReview));
 
 
 }
