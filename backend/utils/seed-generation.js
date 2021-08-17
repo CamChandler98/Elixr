@@ -85,9 +85,10 @@ const assignRandomReview = function (obj) {
     return picked
 };
 
-let reviewImages = ['https://elixrawsbucket.s3.amazonaws.com/review-images/Galaxy-Lemonade-Final3.jpg','https://elixrawsbucket.s3.amazonaws.com/review-images/Galaxy-Magic-Moscow-Mule-A-Vodka-Cocktail-9-735x488.jpg','https://elixrawsbucket.s3.amazonaws.com/review-images/Magical-Color-Changing-Cocktails-The-Flavor-Bender-10.jpg','https://elixrawsbucket.s3.amazonaws.com/review-images/Unicorn-Blood-Cocktail.jpg'] ;
+// let reviewImages = ['https://elixrawsbucket.s3.amazonaws.com/review-images/Galaxy-Lemonade-Final3.jpg','https://elixrawsbucket.s3.amazonaws.com/review-images/Galaxy-Magic-Moscow-Mule-A-Vodka-Cocktail-9-735x488.jpg','https://elixrawsbucket.s3.amazonaws.com/review-images/Magical-Color-Changing-Cocktails-The-Flavor-Bender-10.jpg','https://elixrawsbucket.s3.amazonaws.com/review-images/Unicorn-Blood-Cocktail.jpg'] ;
 
 const genReviews = async () =>{
+    let reviewImages = ['https://elixrawsbucket.s3.amazonaws.com/review-images/Galaxy-Lemonade-Final3.jpg','https://elixrawsbucket.s3.amazonaws.com/review-images/Galaxy-Magic-Moscow-Mule-A-Vodka-Cocktail-9-735x488.jpg','https://elixrawsbucket.s3.amazonaws.com/review-images/Magical-Color-Changing-Cocktails-The-Flavor-Bender-10.jpg','https://elixrawsbucket.s3.amazonaws.com/review-images/Unicorn-Blood-Cocktail.jpg'] ;
 
     let reviewArr = []
 
@@ -106,10 +107,10 @@ const genReviews = async () =>{
             let rating =  Math.floor(Math.random() * (5 - 1 + 1)) + 1
             let imageUrl = null
             if(Math.round(Math.random()) === 0){
-                imageUrl = reviewImages[ Math.floor(Math.random * reviewImages.length)]
+                imageUrl = reviewImages[ Math.floor(Math.random() * reviewImages.length)]
             }
             let content = faker.lorem.paragraph()
-            reviewArr.push({userId,drinkId,rating,content})
+            reviewArr.push({userId,drinkId,rating,content,imageUrl})
         }
     }
     return reviewArr
