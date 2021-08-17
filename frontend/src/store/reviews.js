@@ -36,6 +36,27 @@ export const addReview = (review) => async (dispatch) => {
 
 
 }
+export const editReview = (review) => async (dispatch) => {
+    const {image, userId , drinkId, rating, content} = review
+
+    const formData = new FormData()
+
+    formData.append('userId',userId)
+    formData.append('drinkId', drinkId)
+    formData.append('rating',rating)
+    formData.append('content',content)
+    if(image) formData.append("image",image)
+    const res = await csrfFetch(`/api/reviews/:reviewId`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        body: formData,
+      });
+
+      const review = await res.json();
+      dispatch(add(review));
+}
 
 export const getDrinkReviews = (drinkId) => async (dispatch) =>{
     const res = await fetch(`/api/reviews/drinks/${drinkId}`)
