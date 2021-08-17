@@ -6,10 +6,8 @@ const { useParams } = require("react-router-dom")
 const { getOneDrink } = require("../../store/drinks")
 
 
-const DrinkDetails = () =>{
+const DrinkDetails = ({drinkId}) =>{
     let dispatch = useDispatch()
-    let {drinkId} = useParams()
-
     useEffect(()=>{
         dispatch(getOneDrink(parseInt(drinkId)))
     },[dispatch,drinkId])

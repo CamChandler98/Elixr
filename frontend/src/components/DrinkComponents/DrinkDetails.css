@@ -1,14 +1,19 @@
 .drink-details{
-    margin: 20px 30%;
+    margin: 0px 0px 0px 10px;
+    width: 70%;
     background-color:white;
-    padding: 2%;
+    padding: 1%;
     display: grid;
-    grid-template-columns: 1.7fr 1fr;
+    grid-template-columns: 1fr 1fr;
+   border-bottom: 1px solid rgba(128, 128, 128, 0.692) ;
+   border-top: 1px solid rgba(128, 128, 128, 0.692);
+   box-sizing: border-box;
 }
 
 .drink-details-left{
     display: flex;
     align-items: center;
+    width:fit-content
 }
 
 .drink-details-right{
@@ -16,7 +21,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-left: 1px solid rgba(128, 128, 128, 0.692);
+    border-left: .3px solid rgba(141, 141, 141, 0.582);
 }
 
 .total-ratings{
