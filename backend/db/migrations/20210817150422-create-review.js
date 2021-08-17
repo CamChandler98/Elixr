@@ -10,7 +10,7 @@ module.exports = {
       },
       content: {
         allowNull:false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING(2000)
       },
       rating: {
         allowNull:false,
@@ -21,11 +21,13 @@ module.exports = {
       },
       userId: {
         allowNull:false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {model: 'Users'}
       },
       drinkId: {
         allowNull:false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {model: 'Drinks'}
       },
       createdAt: {
         allowNull: false,
