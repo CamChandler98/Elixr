@@ -13,7 +13,7 @@ router.use('/drinks',drinksRouter)
 
 router.use('/categories',categoriesRouter)
 
-router.use('/reviews')
+router.use('/reviews', reviewsRouter)
 
 
 module.exports = router;
