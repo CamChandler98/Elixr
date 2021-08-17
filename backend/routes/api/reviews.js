@@ -39,8 +39,12 @@ router.post('/' , singleMulterUpload("image"),asyncHandler(async (req,res)=> {
     let {userId, drinkId, content, rating} = req.body
 
 
-    console.log('user',userId, 'drink', drinkId)
-    let imageUrl = await singlePublicFileUpload(req.file)
+    let imageUrl
+    try{
+       imageUrl = await singlePublicFileUpload(req.file)
+    }catch{
+        imageUrl = null
+    }
 
     const newReview = await Review.create({userId,drinkId,content,rating,imageUrl})
 
