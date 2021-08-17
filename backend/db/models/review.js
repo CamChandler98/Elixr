@@ -1,4 +1,6 @@
 'use strict';
+
+const {User, Drink} = require('./index')
 module.exports = (sequelize, DataTypes) => {
   const Review = sequelize.define('Review', {
     content: {
@@ -33,5 +35,62 @@ module.exports = (sequelize, DataTypes) => {
     Review.belongsTo(models.Drink, {foreignKey: 'drinkId'})
     Review.belongsTo(models.User, {foreignKey: 'userId'})
   };
+
+  Review.prototype.getCreator = async function(){
+    const {userId} = this
+
+    let user = await User.findByPk(userId)
+
+    let name = user.username
+
+    return name
+  }
+
+  Review.prototype.getDrink = async function(){
+    const {drinkId} = this
+
+    let drink = await Drink.findByPk(drinkId)
+
+    let name = drink.name
+
+    return name
+  }
+
+  Review.getUserReviews = async function(userId){
+    let reviews = await Review.findAll({
+      where:{
+        userId
+      }
+    })
+    return reviews
+  }
+  Review.getDrinkReviews = async function(drinkId){
+      let reviews = await Review.findAll({
+        where:{
+          drinkId
+        }
+      })
+      return reviews
+  }
+  Review.getDrinkRating = async function(drinkId){
+    const avgRating = await Review.findAll({
+      raw: true,
+      where: {
+          drinkId
+      },
+      attributes: [[sequelize.fn('AVG', sequelize.col('rating')), 'avg']]
+    })
+    return avgRating
+  }
+
+  Review.getReviewCount = async function(drinkId){
+    const numOfReviews = await Review.findAll({
+      where:{
+        drinkId
+      }
+    }).length
+
+    return numOfReviews
+  }
   return Review;
 };
