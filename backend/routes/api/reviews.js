@@ -20,5 +20,20 @@ router.get('/drinks/:drinkId', asyncHandler(async (req,res)=>{
 }))
 
 
+router.get('/users/:userId', asyncHandler(async (req,res)=>{
+    let {userId} = req.params
+    let reviews = await Review.findAll({
+        where:{
+            userId
+          },
+          include: [
+            {model: Drink, attributes: ['name']} ,
+            {model: User, attributes: ['username']} ,
+        ]
+    })
+    res.json(reviews)
+}))
+
+
 
 module.exports = router
