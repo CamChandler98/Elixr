@@ -1,6 +1,8 @@
 
 const faker = require('faker')
 const bcrypt = require('bcryptjs');
+const {User,Drink} = require('../db/models');
+
 
  const genUser = (genNum) => {
     faker.seed(200)
@@ -56,4 +58,62 @@ const genPotions = () =>{
     })
     return potionArr
 }
+
+const genCount = async (Model) => {
+    const elements = await Model.findAll()
+
+    let countObj = elements.reduce((accum,el)=> {
+        accum[el.id] = {id: el.id, count:0}
+        return accum
+    },{})
+
+    return countObj
+
+}
+
+
+
+
+
+const assignRandomReview = function (obj) {
+    let keys = Object.keys(obj);
+    let picked = keys[keys.length * Math.random() << 0]
+    obj[picked].count = obj[picked].count + 1
+    if(obj[picked].count > 9){
+        delete obj[picked]
+    }
+    return picked
+};
+
+let reviewImages = ['https://elixrawsbucket.s3.amazonaws.com/review-images/Galaxy-Lemonade-Final3.jpg','https://elixrawsbucket.s3.amazonaws.com/review-images/Galaxy-Magic-Moscow-Mule-A-Vodka-Cocktail-9-735x488.jpg','https://elixrawsbucket.s3.amazonaws.com/review-images/Magical-Color-Changing-Cocktails-The-Flavor-Bender-10.jpg','https://elixrawsbucket.s3.amazonaws.com/review-images/Unicorn-Blood-Cocktail.jpg'] ;
+
+const genReviews = async () =>{
+
+    let reviewArr = []
+
+
+    let users = await genCount(User)
+
+    let drinks = await Drink.findAll()
+
+    for (let drink of drinks){
+
+        let iterations = Math.floor(Math.random() * (5 - 1 + 1)) + 1
+        let drinkId = drink.id
+
+        for(let i = 0; i <= iterations; i++){
+            let userId = assignRandomReview(users)
+            let rating =  Math.floor(Math.random() * (5 - 1 + 1)) + 1
+            let imageUrl = null
+            if(Math.round(Math.random) === 0){
+                imageUrl = reviewImages[ Math.floor(Math.random * reviewImages.length)]
+            }
+            let content = faker.lorem.paragraph
+            reviewArr.push({userId,drinkId,rating,content})
+        }
+    }
+    return reviewArr
+}
+
+
 module.exports = {genUser,genPotions}
