@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
@@ -8,10 +8,12 @@ import Navigation from "./components/Navigation";
 import DrinkCategoriesPage from "./components/DrinkComponents/DrinkCategoriesPage";
 import CategoryPage from "./components/DrinkComponents/Category-Page";
 import DrinkPage from "./components/DrinkComponents/DrinkPage";
+import AddReviewForm from "./components/ReviewComponents/AddReviewForm";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const sessionUser = useSelector(state => state.session.user);
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -45,6 +47,7 @@ function App() {
         <Route path = {'/drinks/:drinkId'}>
           <DrinkPage />
         </Route>
+        <Route path = {'/review/new'} component = {sessionUser ? AddReviewForm : LoginFormPage}/>
       </Switch>
     </>
   );
