@@ -33,7 +33,14 @@ module.exports = (sequelize, DataTypes) => {
     Review.belongsTo(models.Drink, {foreignKey: 'drinkId'})
     Review.belongsTo(models.User, {foreignKey: 'userId'})
   };
-  Review
+
+  Review.getDrinkReviews = async function(drinkId){
+      let reviews = await Review.findAll({
+        where:{
+          drinkId
+        }
+      })
+  }
   Review.getDrinkRating = async function(drinkId){
     const avgRating = await Review.findAll({
       raw: true,
