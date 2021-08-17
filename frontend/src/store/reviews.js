@@ -37,14 +37,15 @@ export const addReview = (review) => async (dispatch) => {
 
 }
 export const editReview = (review) => async (dispatch) => {
-    const {image, userId , drinkId, rating, content} = review
+    const {image, rating, content, removeImg} = review
 
     const formData = new FormData()
 
-    formData.append('userId',userId)
-    formData.append('drinkId', drinkId)
+
     formData.append('rating',rating)
     formData.append('content',content)
+    formData.append('removeImg', removeImg)
+
     if(image) formData.append("image",image)
     const res = await csrfFetch(`/api/reviews/:reviewId`, {
         method: "PUT",

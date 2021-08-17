@@ -90,6 +90,16 @@ router.put('/:reviewId' , singleMulterUpload("image"),asyncHandler(async (req,re
 
 }))
 
+router.delete('/:reviewId' , asyncHandler( async (req,res) => {
+    let {reviewId} = req.params
+
+    let review = await Review.findByPk(reviewId)
+
+    await review.destroy()
+
+    return res.json(review)
+}))
+
 
 
 
