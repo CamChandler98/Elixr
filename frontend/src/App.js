@@ -7,6 +7,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import DrinkCategoriesPage from "./components/DrinkComponents/DrinkCategoriesPage";
 import CategoryPage from "./components/DrinkComponents/Category-Page";
+import DrinkPage from "./components/DrinkComponents/DrinkPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,15 +27,25 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path = "/categories">
+          {/* <Route exact path = "/categories">
+            <DrinkCategoriesPage />
+          </Route>
+          <Route path = {'/categories/:categoryId/:categoryName'}>
+          <CategoryPage />
+        </Route> */}
+        </Switch>
+      )}
+      <Switch>
+      <Route exact path = "/categories">
             <DrinkCategoriesPage />
           </Route>
           <Route path = {'/categories/:categoryId/:categoryName'}>
           <CategoryPage />
         </Route>
-        </Switch>
-      )}
-
+        <Route path = {'/drinks/:drinkId'}>
+          <DrinkPage />
+        </Route>
+      </Switch>
     </>
   );
 }
