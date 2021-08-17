@@ -17,7 +17,7 @@ const DrinkCategoriesPage = () => {
         <div className = 'category-container'>
            {categories.map(category => {
                return (
-                   <NavLink to = {`/categories/${category.id}`}>{category.name}</NavLink>
+                   <NavLink to = {`/categories/${category.id}/${category.name}`}>{category.name}</NavLink>
                )
            })}
 

@@ -26,16 +26,15 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-        </Switch>
-      )}
-      <Switch>
-          <Route path = "/categories">
+          <Route exact path = "/categories">
             <DrinkCategoriesPage />
           </Route>
-        <Route path = {'/categories/:categoryId'}>
+          <Route path = {'/categories/:categoryId/:categoryName'}>
           <CategoryPage />
         </Route>
-      </Switch>
+        </Switch>
+      )}
+
     </>
   );
 }
