@@ -1,4 +1,6 @@
 'use strict';
+
+const {User} = require('./index')
 module.exports = (sequelize, DataTypes) => {
   const Review = sequelize.define('Review', {
     content: {
@@ -34,7 +36,15 @@ module.exports = (sequelize, DataTypes) => {
     Review.belongsTo(models.User, {foreignKey: 'userId'})
   };
 
-  Review.prototype.GetCreator
+  Review.prototype.getCreator = async function(){
+    const {userId} = this
+
+    let user = await User.findByPk(userId)
+
+    let name = user.username
+
+    return name
+  }
 
   Review.getUserReviews = async function(userId){
     let reviews = await Review.findAll({
