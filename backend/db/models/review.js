@@ -34,12 +34,23 @@ module.exports = (sequelize, DataTypes) => {
     Review.belongsTo(models.User, {foreignKey: 'userId'})
   };
 
+  Review.prototype.GetCreator
+
+  Review.getUserReviews = async function(userId){
+    let reviews = await Review.findAll({
+      where:{
+        userId
+      }
+    })
+    return reviews
+  }
   Review.getDrinkReviews = async function(drinkId){
       let reviews = await Review.findAll({
         where:{
           drinkId
         }
       })
+      return reviews
   }
   Review.getDrinkRating = async function(drinkId){
     const avgRating = await Review.findAll({
@@ -49,6 +60,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       attributes: [[sequelize.fn('AVG', sequelize.col('rating')), 'avg']]
     })
+    return avgRating
   }
 
   Review.getReviewCount = async function(drinkId){
