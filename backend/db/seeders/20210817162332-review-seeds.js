@@ -2,8 +2,9 @@
 
 const { genReviews } = require("../../utils/seed-generation");
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-   return queryInterface.bulkInsert('Reviews', genReviews(),{});
+  up: async (queryInterface, Sequelize) => {
+    let reviews = await genReviews()
+   return queryInterface.bulkInsert('Reviews', reviews,{});
 
   },
 

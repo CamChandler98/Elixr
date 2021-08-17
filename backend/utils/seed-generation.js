@@ -105,10 +105,10 @@ const genReviews = async () =>{
             let userId = assignRandomReview(users)
             let rating =  Math.floor(Math.random() * (5 - 1 + 1)) + 1
             let imageUrl = null
-            if(Math.round(Math.random) === 0){
+            if(Math.round(Math.random()) === 0){
                 imageUrl = reviewImages[ Math.floor(Math.random * reviewImages.length)]
             }
-            let content = faker.lorem.paragraph
+            let content = faker.lorem.paragraph()
             reviewArr.push({userId,drinkId,rating,content})
         }
     }
