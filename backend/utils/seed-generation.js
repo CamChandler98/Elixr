@@ -116,4 +116,4 @@ const genReviews = async () =>{
 }
 
 
-module.exports = {genUser,genPotions}
+module.exports = {genUser,genPotions, genReviews}
