@@ -55,8 +55,41 @@ router.post('/' , singleMulterUpload("image"),asyncHandler(async (req,res)=> {
     })
 
     return res.json(review)
+}))
+
+router.put('/:reviewId' , singleMulterUpload("image"),asyncHandler(async (req,res)=> {
+    let {reviewId} = req.params
+
+    let {content, rating, removeImg} = req.body
+
+    let imageUrl = await singlePublicFileUpload(req.file)
+    console.log(reviewId)
+    let review = await Review.findByPk(reviewId)
+    console.log(review.content)
+    review.content = content || review.content
+    review.rating = rating || review.rating
+    if(removeImg === 'yes'){
+        review.imageUrl = null
+    }else{
+        review.imageUrl = imageUrl || review.imageUrl
+    }
+
+    await review.save()
+
+    let updatedReview = await Review.findOne({
+        where:{
+            id: review.id
+          },
+          include: [
+            {model: Drink, attributes: ['name']} ,
+            {model: User, attributes: ['username']} ,
+        ]
+    })
+
+    return res.json(updatedReview)
 
 }))
+
 
 
 
