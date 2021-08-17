@@ -8,6 +8,7 @@ const { getOneDrink } = require("../../store/drinks")
 
 const DrinkDetails = ({drinkId}) =>{
     let dispatch = useDispatch()
+
     useEffect(()=>{
         dispatch(getOneDrink(parseInt(drinkId)))
     },[dispatch,drinkId])
