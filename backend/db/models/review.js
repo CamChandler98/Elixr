@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
     rating: {
         allowNull: false,
         type: DataTypes.INTEGER,
+        validate:{
+          min:0,
+          max:5
+        }
       },
     imageUrl: {
        type: DataTypes.STRING,
