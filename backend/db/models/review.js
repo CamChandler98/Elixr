@@ -1,6 +1,6 @@
 'use strict';
 
-const {User} = require('./index')
+const {User, Drink} = require('./index')
 module.exports = (sequelize, DataTypes) => {
   const Review = sequelize.define('Review', {
     content: {
@@ -42,6 +42,16 @@ module.exports = (sequelize, DataTypes) => {
     let user = await User.findByPk(userId)
 
     let name = user.username
+
+    return name
+  }
+
+  Review.prototype.getDrink = async function(){
+    const {drinkId} = this
+
+    let drink = await Drink.findByPk(drinkId)
+
+    let name = drink.name
 
     return name
   }
