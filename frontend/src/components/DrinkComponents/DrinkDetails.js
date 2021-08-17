@@ -2,7 +2,7 @@ import placeholder from './images/potion.jpg'
 import './DrinkDetails.css'
 const { useEffect } = require("react")
 const { useSelector, useDispatch } = require("react-redux")
-const { useParams } = require("react-router-dom")
+const { useParams, NavLink } = require("react-router-dom")
 const { getOneDrink } = require("../../store/drinks")
 
 
@@ -22,7 +22,9 @@ const DrinkDetails = ({drinkId}) =>{
             <div className = 'drink-details-left'>
                 <img src = {placeholder}></img>
                 <div className = 'drink-detail-text'>
+                    <NavLink to = {`/drinks/${drinkId}`}>
                     <h2>{drink?.name}</h2>
+                    </NavLink>
                     <h3>TODO: Add Creator Name</h3>
                     <h3>TODO: Add Category Name</h3>
                 </div>
