@@ -14,6 +14,14 @@ export const getDrinkReviews = (drinkId) => async (dispatch) =>{
         dispatch(load(reviewList))
     }
 }
+
+export const getUserReviews = (userId) => async (dispatch) =>{
+    const res = await fetch(`/api/reviews/users/${userId}`)
+    if(res.ok){
+        const reviewList = await res.json()
+        dispatch(load(reviewList))
+    }
+}
 const reviewReducer = (state = {}, action) => {
     switch(action.type){
         case LOAD:{
