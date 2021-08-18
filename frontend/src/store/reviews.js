@@ -92,7 +92,13 @@ export const getUserReviews = (userId) => async (dispatch) =>{
 }
 
 export const getOneReview = (reviewId) => async (dispatch) => {
-    
+    const res = await fetch(`/api/reviews/${reviewId}`)
+
+    if(res.ok){
+        const review = await res.json(
+            dispatch(add(review))
+        )
+    }
 }
 
 const reviewReducer = (state = {}, action) => {
