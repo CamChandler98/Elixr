@@ -2,16 +2,17 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getUserReviews } from "../../store/reviews"
 import ReviewDetails from "./ReviewDetails"
-const UserReviews = () => {
+const DrinkReviews = ({drinkId}) => {
     let dispatch = useDispatch()
 
-    let userId = useSelector(state => state.session.user.id)
-    console.log('UserId', userId)
+    // let userId = useSelector(state => state.session.user.id)
+    // console.log('UserId', userId)
     useEffect(()=>{
-        dispatch(getUserReviews(userId))
+        dispatch(getDrinkReviews(drinkId))
     },[])
 
-    let reviews = useSelector(state => state.reviews.userReviews)
+
+    let reviews = useSelector(state => state.reviews.drinkReviews)
 
     return(
         <div>
@@ -23,4 +24,4 @@ const UserReviews = () => {
         </div>
     )
 }
-export default UserReviews
+export default DrinkReviews

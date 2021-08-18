@@ -3,7 +3,13 @@ import { csrfFetch } from './csrf';
 const LOAD = 'reviews/load'
 const ADD = 'reviews/add'
 const REMOVE ='reviews/remove'
-const USER = 'reviewa/user'
+const USER = 'reviews/user'
+const DRINK = 'reviews/drink'
+
+const drink = (drinkReviews) => ({
+    type: DRINK,
+    drinkReviews
+})
 
 const user = (userReviews) => ({
     type: USER,
@@ -84,7 +90,7 @@ export const getDrinkReviews = (drinkId) => async (dispatch) =>{
     const res = await fetch(`/api/reviews/drinks/${drinkId}`)
     if(res.ok){
         const reviewList = await res.json()
-        dispatch(load(reviewList))
+        dispatch(drink(reviewList))
     }
 }
 
@@ -93,6 +99,17 @@ export const getUserReviews = (userId) => async (dispatch) =>{
     if(res.ok){
         const reviewList = await res.json()
         dispatch(user(reviewList))
+    }
+}
+
+export const getOneReview = (reviewId) => async (dispatch) => {
+    const res = await fetch(`/api/reviews/${reviewId}`)
+
+    if(res.ok){
+        const review = await res.json(
+
+        )
+        dispatch(add(review))
     }
 }
 
@@ -134,6 +151,11 @@ const reviewReducer = (state = {}, action) => {
         case USER :{
             let newState = {...state}
             newState.userReviews = action.userReviews
+            return {...newState}
+        }
+        case DRINK: {
+            let newState = {...state}
+            newState.drinkReviews = action.drinkReviews
             return {...newState}
         }
         default:
