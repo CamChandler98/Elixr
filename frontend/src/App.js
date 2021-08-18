@@ -32,7 +32,7 @@ function App() {
           </Route>
 
           <Route path = {'/ureviews'} component = {UserReviews} />
-      
+
 
         </Switch>
       )}

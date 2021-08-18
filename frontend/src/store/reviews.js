@@ -101,8 +101,9 @@ export const getOneReview = (reviewId) => async (dispatch) => {
 
     if(res.ok){
         const review = await res.json(
-            dispatch(add(review))
+
         )
+        dispatch(add(review))
     }
 }
 
