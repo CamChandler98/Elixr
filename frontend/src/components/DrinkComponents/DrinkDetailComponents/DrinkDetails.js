@@ -1,9 +1,10 @@
-import placeholder from './images/potion.jpg'
+
 import './DrinkDetails.css'
+import DrinkTextDetails from './DrinkOwnedDetails'
 const { useEffect } = require("react")
 const { useSelector, useDispatch } = require("react-redux")
 const { useParams, NavLink } = require("react-router-dom")
-const { getOneDrink } = require("../../store/drinks")
+const { getOneDrink } = require("../../../store/drinks")
 
 
 const DrinkDetails = ({drinkId}) =>{
@@ -19,16 +20,7 @@ const DrinkDetails = ({drinkId}) =>{
 
     return (
         <div className = 'drink-details'>
-            <div className = 'drink-details-left'>
-                <img src = {placeholder}></img>
-                <div className = 'drink-detail-text'>
-                    <NavLink to = {`/drinks/${drinkId}`}>
-                    <h2>{drink?.name}</h2>
-                    </NavLink>
-                    <h3>{drink?.User.username}</h3>
-                    <h3>{drink?.Category.name}</h3>
-                </div>
-            </div>
+                <DrinkTextDetails drink = {drink}></DrinkTextDetails>
             <div className = 'drink-details-right'>
                 <h2 className= 'total-ratings'>Total ratings {drink?.count}</h2>
                 <span className = 'average-rating'>Average rating: {drink?.avg}</span>

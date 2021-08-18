@@ -10,6 +10,7 @@ module.exports = {
         {name:"Transmutation"},
         {name:'Illusion'},
         {name:'Abjuration'},
+        {name: 'Divination'}
         {name:'Other'},
       ], {});
 

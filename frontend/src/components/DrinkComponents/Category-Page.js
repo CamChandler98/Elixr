@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import DrinkDetails from "./DrinkDetails"
+import DrinkDetails from "./DrinkDetailComponents/DrinkDetails"
 import './Category-Page.css'
 
 const CategoryPage = () =>{
