@@ -9,6 +9,7 @@ import DrinkCategoriesPage from "./components/DrinkComponents/DrinkCategoriesPag
 import CategoryPage from "./components/DrinkComponents/Category-Page";
 import DrinkPage from "./components/DrinkComponents/DrinkPage";
 import AddReviewForm from "./components/ReviewComponents/AddReviewForm";
+import UserReviews from "./components/ReviewComponents/UserReviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path = {'/ureviews'} component = {UserReviews} />
           {/* <Route exact path = "/categories">
             <DrinkCategoriesPage />
           </Route>
@@ -47,7 +49,7 @@ function App() {
         <Route path = {'/drinks/:drinkId'}>
           <DrinkPage />
         </Route>
-        <Route path = {'/review/new'} component = {sessionUser ? AddReviewForm : LoginFormPage}/>
+        {isLoaded && <Route path = {'/review/new'} component = {sessionUser ? AddReviewForm : LoginFormPage}/>}
       </Switch>
     </>
   );

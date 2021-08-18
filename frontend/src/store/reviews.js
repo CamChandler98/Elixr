@@ -3,7 +3,12 @@ import { csrfFetch } from './csrf';
 const LOAD = 'reviews/load'
 const ADD = 'reviews/add'
 const REMOVE ='reviews/remove'
+const USER = 'reviewa/user'
 
+const user = (userReviews) => ({
+    type: USER,
+    userReviews
+})
 const remove = (reviewId) =>({
     type: REMOVE,
     reviewId
@@ -87,7 +92,7 @@ export const getUserReviews = (userId) => async (dispatch) =>{
     const res = await fetch(`/api/reviews/users/${userId}`)
     if(res.ok){
         const reviewList = await res.json()
-        dispatch(load(reviewList))
+        dispatch(user(reviewList))
     }
 }
 
@@ -124,6 +129,11 @@ const reviewReducer = (state = {}, action) => {
 
             delete newState[action.reviewId]
 
+            return {...newState}
+        }
+        case USER :{
+            let newState = {...state}
+            newState.userReviews = action.userReviews
             return {...newState}
         }
         default:
