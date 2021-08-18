@@ -22,6 +22,7 @@ router.get('/:id(\\d+)', asyncHandler( async (req,res)=> {
     let averageRes = await Review.getDrinkRating(id)
 
     drink.dataValues.avg = averageRes
+    drink.dataValues.count = await Review.getReviewCount(id)
     return res.json(drink)
 }))
 

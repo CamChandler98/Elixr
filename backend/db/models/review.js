@@ -88,11 +88,7 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   Review.getReviewCount = async function(drinkId){
-    const numOfReviews = await Review.findAll({
-      where:{
-        drinkId
-      }
-    }).length
+    const numOfReviews = await Review.count({where: {drinkId}})
 
     return numOfReviews
   }
