@@ -1,6 +1,6 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
-const {Category, Drink} = require('../../db/models');
+const {Category, Drink, Review} = require('../../db/models');
 const { route } = require('./drinks');
 const router = express.Router();
 

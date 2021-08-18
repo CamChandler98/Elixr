@@ -1,6 +1,6 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
-const {Drink} = require('../../db/models')
+const {Drink, Review} = require('../../db/models')
 const router = express.Router();
 
 
@@ -19,6 +19,9 @@ router.get('/', asyncHandler(async (req, res)=> {
 router.get('/:id(\\d+)', asyncHandler( async (req,res)=> {
     const {id} = req.params
     const drink = await Drink.getOne(parseInt(id))
+    let averageRes = await Review.getDrinkRating(id)
+
+    drink.dataValues.avg = averageRes
     return res.json(drink)
 }))
 
