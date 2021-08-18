@@ -83,7 +83,8 @@ module.exports = (sequelize, DataTypes) => {
       },
       attributes: [[sequelize.fn('AVG', sequelize.col('rating')), 'avg']]
     })
-    return avgRating
+    return Number(avgRating[0].avg).toFixed(2)
+
   }
 
   Review.getReviewCount = async function(drinkId){
