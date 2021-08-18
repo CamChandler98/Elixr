@@ -1,4 +1,5 @@
-import './DrinkCategory.css'
+import catImages from './image-handler'
+
 const { useEffect, useState } = require("react")
 const { NavLink} = require('react-router-dom')
 const DrinkCategoriesPage = () => {
@@ -14,10 +15,17 @@ const DrinkCategoriesPage = () => {
     },[])
 
     return (
-        <div className = 'category-container'>
+        <div className = 'categories-container'>
+            <div className = 'title'><p>Pick Your Poison</p></div>
            {categories.map(category => {
                return (
-                   <NavLink to = {`/categories/${category.id}/${category.name}`}>{category.name}</NavLink>
+                   <div className = {`magic ${category.name.toLowerCase()}`}>
+                       <div className = 'inner-cat'>
+                       <NavLink to = {`/categories/${category.id}/${category.name}`}>
+                       <img className ='catimg' src = {catImages[category.id]}></img>
+                       {category.name}</NavLink>
+                        </div>
+                   </div>
                )
            })}
 

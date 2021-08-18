@@ -5,7 +5,9 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import DrinkCategoriesPage from "./components/DrinkComponents/DrinkCategoriesPage";
+// import DrinkCategoriesPage from "./components/DrinkComponents/DrinkCategoriesPage";
+
+import CategorySty from "./components/DrinkComponents/Category-PageStyle";
 import CategoryPage from "./components/DrinkComponents/Category-Page";
 import DrinkPage from "./components/DrinkComponents/DrinkPage";
 import AddReviewForm from "./components/ReviewComponents/AddReviewForm";
@@ -38,7 +40,7 @@ function App() {
       )}
       <Switch>
       <Route exact path = "/categories">
-            <DrinkCategoriesPage />
+            <CategorySty />
           </Route>
           <Route path = {'/categories/:categoryId/:categoryName'}>
           <CategoryPage />
