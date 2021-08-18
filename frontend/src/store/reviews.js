@@ -91,6 +91,10 @@ export const getUserReviews = (userId) => async (dispatch) =>{
     }
 }
 
+export const getOneReview = (reviewId) => async (dispatch) => {
+    
+}
+
 const reviewReducer = (state = {}, action) => {
     switch(action.type){
         case LOAD:{

@@ -104,6 +104,22 @@ router.delete('/:reviewId' , asyncHandler( async (req,res) => {
     return res.json(review)
 }))
 
+router.get('/:reviewId' ,asyncHandler( async (req,res) => {
+    let {reviewId} = req.params
+
+     let review = await Review.findOne({
+        where:{
+            id: reviewId
+          },
+          include: [
+            {model: Drink, attributes: ['name']} ,
+            {model: User, attributes: ['username']} ,
+        ]
+    })
+
+    return res.json(review)
+}))
+
 
 
 
