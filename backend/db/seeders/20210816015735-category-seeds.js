@@ -6,7 +6,7 @@ module.exports = {
       return queryInterface.bulkInsert('Categories', [
         {name:'Conjuration'},
         {name:'Evocation'},
-        {name:'Enchanment'},
+        {name:'Enchantment'},
         {name:"Transmutation"},
         {name:'Illusion'},
         {name:'Abjuration'},
