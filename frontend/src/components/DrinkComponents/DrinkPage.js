@@ -1,7 +1,8 @@
-import { useParams } from "react-router-dom"
+import { useParams, NavLink } from "react-router-dom"
 import DrinkReviews from "../ReviewComponents/DrinkReviews"
 const { useEffect } = require("react")
 const { useSelector, useDispatch } = require("react-redux")
+
 const { getOneDrink } = require("../../store/drinks")
 
 const DrinkPage = () =>{
@@ -16,7 +17,7 @@ const DrinkPage = () =>{
     return (
         <div className = 'drink-details'>
         <div className = 'drink-details-left'>
-            <img src = {placeholder}></img>
+            {/* <img src = {placeholder}></img> */}
             <div className = 'drink-detail-text'>
                 <NavLink to = {`/drinks/${drinkId}`}>
                 <h2>{drink?.name}</h2>
