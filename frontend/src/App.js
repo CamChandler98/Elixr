@@ -49,7 +49,7 @@ function App() {
         <Route path = {'/drinks/:drinkId'}>
           <DrinkPage />
         </Route>
-        <Route path = {'/review/new'} component = {sessionUser ? AddReviewForm : LoginFormPage}/>
+        {isLoaded && <Route path = {'/review/new'} component = {sessionUser ? AddReviewForm : LoginFormPage}/>}
       </Switch>
     </>
   );
