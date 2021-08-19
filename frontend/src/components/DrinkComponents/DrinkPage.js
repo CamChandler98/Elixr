@@ -48,11 +48,13 @@ let DrinkPageDetailsSty = styled.div`
             box-sizing: border-box;
             display:flex;
             align-items: center;
+            padding: 20px 5px;
             gap:2%;
         }
 
         .drink-description > p {
             margin-left: 2%;
+            font-size:16px;
         }
 
         .review-button{

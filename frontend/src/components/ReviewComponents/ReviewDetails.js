@@ -7,11 +7,11 @@ import ReviewRating from "./ReviewRating"
 
 const ReviewDetailSty = styled.div`
     .review-details{
-        border-top: 1px solid rgba(128,128,128,0.692);
-        border-bottom: 1px solid rgba(128,128,128,0.692);
+        border-top: 1px solid rgba(128,128,128,0.52);
+        border-bottom: 1px solid rgba(128,128,128,0.52);
         display:flex;
         flex-direction: column;
-        padding: 20px 0px;
+        padding: 50px 0px;
     }
 
     .review-image{
@@ -19,9 +19,18 @@ const ReviewDetailSty = styled.div`
         justify-content:center;
     }
     .user-pic{
-        width: 500px;
+        width: 775px;
         height: 200px;
         object-fit: cover;
+    }
+
+    .review-details-rating{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border: 1px solid rgba(128,128,128,0.3);
+        border-radius: 7px;
+        box-sizing: border-box;
+        padding: 10px 15px;
     }
 `
 const ReviewDetails = ({reviewId}) => {
