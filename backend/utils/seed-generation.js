@@ -50,8 +50,8 @@ const genPotions = () =>{
     let potionArr = []
 
     potionnames.forEach(potion => {
-        let categoryId = Math.floor(Math.random() * (7 - 1 + 1)) + 1
-        let creatorId = Math.floor(Math.random() * (26 - 1 + 1)) + 1
+        let categoryId = Math.floor(Math.random() * (8 - 1 + 1)) + 1
+        let creatorId = Math.floor(Math.random() * (28 - 1 + 1)) + 1
         let name = potion
         let description = faker.lorem.paragraph()
         potionArr.push({categoryId,creatorId,name,description})
