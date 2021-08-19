@@ -11,16 +11,35 @@ form{
     flex-direction: column;
     align-items:center;
     padding:25px;
-    margin:1%
+    margin:1%;
+    gap: 25px;
 }
 .content-photo{
-    display:flex
+    display:flex;
+    gap:15px
 }
 input[type="file"]{
     display: none;
 }
 img{
+    margin: 2%;
     width:90px;
+    max-height: 90px;
+    object-fit: cover;
+}
+.remove{
+    width:90px;
+    margin: 2%;
+
+}
+.submit{
+    width: 50%;
+    height: 30px;
+    border-radius: 8px;
+    border: 0px;
+    background-color: rgb(143,69,182);
+    color: #fff;
+    font-weight: 500;
 }
 `
 
@@ -80,7 +99,7 @@ const AddReviewForm = ({drinkId}) =>{
                      <label htmlFor ='add-photo'>
                     <input id ='add-photo'type="file" onChange={updateFile} />
                        <img src = {tempImgUrl ? tempImgUrl: cameraButton} onClick ={tempImgUrl ? (e)=> {e.preventDefault()} : console.log('hi')}/>
-                       {tempImgUrl && <button onClick ={ e => {
+                       {tempImgUrl && <button className ='remove' onClick ={ e => {
                            removeImage(e)
                        }}>remove</button>}
                     </label>
@@ -100,7 +119,7 @@ const AddReviewForm = ({drinkId}) =>{
                         <option value = {5}>5</option>
                     </select>
                 </div>
-                <button type = 'submit'>SUBMIT</button>
+                <button className= 'submit' type = 'submit'>SUBMIT</button>
             </form>
             </AddReviewSty>
         </div>
