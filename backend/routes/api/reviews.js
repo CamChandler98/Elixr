@@ -12,6 +12,7 @@ router.get('/drinks/:drinkId', asyncHandler(async (req,res)=>{
         where:{
             drinkId
           },
+          order:[['updatedAt', 'ASC']],
           include: [
             {model: Drink, attributes: ['name']} ,
             {model: User, attributes: ['username']} ,
@@ -27,6 +28,7 @@ router.get('/users/:userId', asyncHandler(async (req,res)=>{
         where:{
             userId
           },
+          order:['updatedAt','DESC'],
           include: [
             {model: Drink, attributes: ['name']} ,
             {model: User, attributes: ['username']} ,
