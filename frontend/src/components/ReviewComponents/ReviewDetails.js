@@ -35,19 +35,20 @@ const ReviewDetailSty = styled.div`
 `
 const ReviewDetails = ({reviewId}) => {
     let dispatch = useDispatch()
-
-    let review = useSelector(state => state.reviews[reviewId])
+    console.log('reviewid',reviewId)
     useEffect(() => {
         dispatch(getOneReview(parseInt(reviewId)))
     },[reviewId,dispatch])
 
+    let review = useSelector(state => state.reviews[reviewId])
 
     return(
         <div className = 'review-details'>
+            {console.log(review)}
             {review &&
                     <ReviewDetailSty>
                        <div className = 'review-details'>
-                       <span className = 'review header'><NavLink to = {`/users/${review?.User.username}`}>{review?.User.username}</NavLink> is drinking <NavLink to = {`/drinks/${review?.drinkId}`}>{review?.Drink.name}</NavLink> brewed by {review?.Drink.User.username} </span>
+                       <span className = 'review header'><NavLink to = {`/users/${review?.User.username}`}>{review?.User?.username}</NavLink> is drinking <NavLink to = {`/drinks/${review?.drinkId}`}>{review?.Drink.name}</NavLink> brewed by {review?.Drink.User.username} </span>
 
                        <div className = 'review-details-rating'>
                            <ReviewRating rating = {review.rating}/>

@@ -115,7 +115,6 @@ const AddReviewForm = ({drinkId}) =>{
         dispatch(getOneDrink(drinkId))
     },[])
 
-    console.log(drinkId)
     let drink = useSelector(state => state.drinks[drinkId])
     const [content, setContent] = useState('')
     const [rating , setRating] = useState(1)

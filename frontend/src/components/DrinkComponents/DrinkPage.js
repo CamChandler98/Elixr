@@ -8,6 +8,7 @@ const { useEffect } = require("react")
 const { useSelector, useDispatch } = require("react-redux")
 
 const { getOneDrink } = require("../../store/drinks")
+const {getDrinkReviews} = require('../../store/reviews')
 
 let DrinkPageDetailsSty = styled.div`
     h2{
@@ -78,9 +79,17 @@ const DrinkPage = () =>{
         dispatch(getOneDrink(parseInt(drinkId)))
 
     },[dispatch,drinkId])
+    useEffect(()=>{
+
+        dispatch(getDrinkReviews(drinkId))
+
+    },[dispatch,drinkId])
+
 
     let drink = useSelector(state => state.drinks[drinkId])
+    let reviewsState = useSelector(state => state.reviews)
 
+    let reviews = Object.values(reviewsState)
     return (
         <DrinkPageSty>
         <div className = 'drink-page'>
@@ -92,7 +101,8 @@ const DrinkPage = () =>{
             <ReviewFormModal drinkId = {drinkId}/>
         </div>
         <div className = 'reviews'>
-        <DrinkReviews drinkId={drink?.id} />
+        {reviews && <DrinkReviews reviews = {reviews} />}
+
         </div>
         </div>
         </DrinkPageSty>

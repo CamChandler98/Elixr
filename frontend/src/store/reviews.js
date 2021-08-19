@@ -90,7 +90,7 @@ export const getDrinkReviews = (drinkId) => async (dispatch) =>{
     const res = await fetch(`/api/reviews/drinks/${drinkId}`)
     if(res.ok){
         const reviewList = await res.json()
-        dispatch(drink(reviewList))
+        dispatch(load(reviewList))
     }
 }
 
@@ -129,7 +129,7 @@ const reviewReducer = (state = {}, action) => {
             if(!state[action.review.id]){
                 return{
                     ...state,
-                    [action.review.id] : action.review
+                    [action.review.id] : action.review,
                 }
             }else{
                 return{
