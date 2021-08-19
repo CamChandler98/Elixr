@@ -11,7 +11,9 @@ let OwnedSty = styled.div`
     .drink-detail{
         display:flex;
         align-items: center;
-        margin-right: 30px;
+        margin-right: 150px;
+        width: 300px;
+        box-sizing: border-box;
     }
     img{
         width: 90px;

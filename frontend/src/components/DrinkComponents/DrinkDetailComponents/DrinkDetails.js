@@ -16,12 +16,12 @@ let DetailsSty = styled.div`
     align-items: center;
     border-left: .3px solid rgba(141, 141, 141, 0.582);
     box-sizing: border-box;
-    padding-left: 20px;
+    padding-left: 40px;
 }
 
 .drink-details{
     margin: 0px 0px 0px 10px;
-    width: 70%;
+    width: fit-content;
     background-color:white;
     padding: 1%;
     display: flex;
