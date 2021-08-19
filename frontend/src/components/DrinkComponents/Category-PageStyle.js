@@ -9,7 +9,8 @@ const Image = styled.div`
        width:100px;
     height: 100px;
     margin-bottom: -20px;
-    margin-top: -10px
+    margin-top: -10px;
+    fill: "red";
 },
 
     .categories-container{

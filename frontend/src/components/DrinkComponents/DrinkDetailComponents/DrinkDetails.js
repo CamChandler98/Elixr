@@ -16,18 +16,19 @@ let DetailsSty = styled.div`
     align-items: center;
     border-left: .3px solid rgba(141, 141, 141, 0.582);
     box-sizing: border-box;
-    padding-left: 40px;
+    padding-left: 60px;
+    margin-left: 20px
 }
 
 .drink-details{
     margin: 0px 0px 0px 10px;
-    width: fit-content;
     background-color:white;
     padding: 1%;
     display: flex;
     border-bottom: 1px solid rgba(128, 128, 128, 0.692) ;
     border-top: 1px solid rgba(128, 128, 128, 0.692);
     box-sizing: border-box;
+    min-width: 700px;
 }
 `
 const DrinkDetailsUnstyled = ({drinkId}) =>{

@@ -2,11 +2,13 @@ import { useParams, NavLink } from "react-router-dom"
 import styled from "styled-components"
 import DrinkReviews from "../ReviewComponents/DrinkReviews"
 import DrinkDetails from "./DrinkDetailComponents/DrinkDetails"
+import ReviewFormModal from "../ReviewComponents/ReviewFormModal"
 import reviewButton from '../DrinkComponents/images/thumbnail/check-in-button.svg'
 const { useEffect } = require("react")
 const { useSelector, useDispatch } = require("react-redux")
 
 const { getOneDrink } = require("../../store/drinks")
+const {getDrinkReviews} = require('../../store/reviews')
 
 let DrinkPageDetailsSty = styled.div`
     h2{
@@ -36,24 +38,35 @@ let DrinkPageDetailsSty = styled.div`
 
     let DrinkPageSty = styled.div`
     .drink-page{
-        margin: 3% 10%
+        margin: 3% 10%;
+        display: flex;
+        flex-direction: column;
+        max-width: 800px;
     }
 
         .drink-description{
             margin-left: 1.1%;
-            width: 55%;
             border-bottom: 1px solid rgba(128,128,128,0.692);
             box-sizing: border-box;
             display:flex;
+            align-items: center;
+            padding: 20px 5px;
+            gap:2%;
         }
 
         .drink-description > p {
             margin-left: 2%;
+            font-size:16px;
         }
 
         .review-button{
             width: 70px;
             transform: rotate(10deg)
+        }
+
+        .reviews{
+            display: flex;
+            margin-top: 10%
         }
 `
 
@@ -66,9 +79,18 @@ const DrinkPage = () =>{
         dispatch(getOneDrink(parseInt(drinkId)))
 
     },[dispatch,drinkId])
+    useEffect(()=>{
+
+        dispatch(getDrinkReviews(drinkId))
+
+    },[dispatch,drinkId])
+
 
     let drink = useSelector(state => state.drinks[drinkId])
+    let reviewsState = useSelector(state => state.reviews)
 
+    let allReviews = Object.values(reviewsState)
+    let reviews = allReviews.filter( review => review.drinkId === + drinkId)
     return (
         <DrinkPageSty>
         <div className = 'drink-page'>
@@ -77,10 +99,11 @@ const DrinkPage = () =>{
         </div>
         <div className = 'drink-description'>
             <p>{drink?.description}</p>
-            <img className = 'review-button' src = {reviewButton}/>
+            <ReviewFormModal drinkId = {drinkId}/>
         </div>
         <div className = 'reviews'>
-        <DrinkReviews drinkId={drink?.id} />
+        {reviews && <DrinkReviews reviews = {reviews} />}
+
         </div>
         </div>
         </DrinkPageSty>
