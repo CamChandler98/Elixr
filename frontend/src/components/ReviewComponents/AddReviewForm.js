@@ -137,6 +137,7 @@ const AddReviewForm = ({drinkId}) =>{
             setContent('')
             setRating(1)
             setImage(null)
+            setTempImgUrl('')
       }
 
       const removeImage = (e) => {
@@ -198,6 +199,9 @@ const AddReviewForm = ({drinkId}) =>{
                             <div {...props} index={state.index}></div>
                           )}
                           pearling
+
+                          value = {rating}
+                          onAfterChange = { val => {setRating(val)}}
                     />
                         </div>
                     </ReviewSliderSty>
