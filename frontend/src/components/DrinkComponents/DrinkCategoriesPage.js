@@ -1,4 +1,4 @@
-import catImages from './image-handler'
+import {catImages} from './image-handler'
 
 const { useEffect, useState } = require("react")
 const { NavLink} = require('react-router-dom')
