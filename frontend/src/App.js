@@ -24,6 +24,16 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      <Route exact path = "/categories">
+            <CategorySty />
+          </Route>
+          <Route path = {'/categories/:categoryId/:categoryName'}>
+          <CategoryPage />
+        </Route>
+        <Route exact path = {'/drinks/:drinkId'}>
+          <DrinkPage />
+        </Route>
+        {isLoaded && <Route path = {'/review/new'} component = {sessionUser ? AddReviewForm : LoginFormPage}/>}
       {isLoaded && (
         <Switch>
           <Route path="/login">
@@ -38,7 +48,7 @@ function App() {
 
         </Switch>
       )}
-      <Switch>
+      {/* <Switch>
       <Route exact path = "/categories">
             <CategorySty />
           </Route>
@@ -49,7 +59,7 @@ function App() {
           <DrinkPage />
         </Route>
         {isLoaded && <Route path = {'/review/new'} component = {sessionUser ? AddReviewForm : LoginFormPage}/>}
-      </Switch>
+      </Switch> */}
     </>
   );
 }

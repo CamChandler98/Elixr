@@ -19,10 +19,10 @@ const DrinkCategoriesPage = () => {
             <div className = 'title'><p>Pick Your Poison</p></div>
            {categories.map(category => {
                return (
-                   <div className = {`magic ${category.name.toLowerCase()}`}>
+                   <div key = {category.id}className = {`magic ${category.name.toLowerCase()}`}>
                        <div className = 'inner-cat'>
                        <NavLink to = {`/categories/${category.id}/${category.name}`}>
-                       <img className ='catimg' src = {catImages[category.id]}></img>
+                       <img className ='catimg' src = {catImages[category.id]} alt = {`${category.name}`}></img>
                        {category.name}</NavLink>
                         </div>
                    </div>

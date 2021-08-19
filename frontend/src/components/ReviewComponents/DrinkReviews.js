@@ -1,24 +1,29 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getDrinkReviews } from "../../store/reviews"
+import { useParams } from "react-router-dom"
+// import { current } from "../../store/drinks"
+import { getDrinkReviews} from "../../store/reviews"
 import ReviewDetails from "./ReviewDetails"
-const DrinkReviews = ({drinkId}) => {
-    let dispatch = useDispatch()
+const DrinkReviews = () => {
+    const dispatch = useDispatch()
 
-    // let userId = useSelector(state => state.session.user.id)
-    // console.log('UserId', userId)
-    useEffect(()=>{
-        dispatch(getDrinkReviews(drinkId))
-    },[])
-
+    let {drinkId} = useParams()
 
     let reviews = useSelector(state => state.reviews.drinkReviews)
+    useEffect(() =>{
+        dispatch((getDrinkReviews(drinkId)))
+    },[dispatch, drinkId])
+
+
+
+
+
 
     return(
         <div>
             {reviews && reviews.map(review => {
                 return (
-                    <ReviewDetails reviewId={review.id}></ReviewDetails>
+                    <ReviewDetails key = {review.id}reviewId={review.id}></ReviewDetails>
                 )
             })}
         </div>

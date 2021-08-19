@@ -6,10 +6,10 @@ const UserReviews = () => {
     let dispatch = useDispatch()
 
     let userId = useSelector(state => state.session.user.id)
-    console.log('UserId', userId)
+
     useEffect(()=>{
         dispatch(getUserReviews(userId))
-    },[])
+    },[userId, dispatch])
 
     let reviews = useSelector(state => state.reviews.userReviews)
 

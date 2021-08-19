@@ -3,7 +3,7 @@
 header {
     display: flex;
     background-color: white;
-    position: fixed;
+    position: static;
     font-size: 30px;
     top:0;
     width:100%;

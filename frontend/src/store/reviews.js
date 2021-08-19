@@ -82,8 +82,8 @@ export const editReview = (review) => async (dispatch) => {
         body: formData,
       });
 
-      const review = await res.json();
-      dispatch(add(review));
+      const updatedReview = await res.json();
+      dispatch(add(updatedReview));
 }
 
 export const getDrinkReviews = (drinkId) => async (dispatch) =>{

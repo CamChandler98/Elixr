@@ -16,14 +16,14 @@ const CategoryPage = () =>{
             setDrinkList(drinks)
         }
         fetchData()
-    },[])
+    },[categoryId])
 
     return(
         <div className = 'drinks-container'>
             <h2>{categoryName}</h2>
             {drinkList.map(drink => {
                 return (
-                    <DrinkDetails drinkId = {drink.id}/>
+                    <DrinkDetails key = {drink.id} drinkId = {drink.id}/>
                 )
             })}
         </div>
