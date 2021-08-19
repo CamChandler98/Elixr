@@ -17,6 +17,7 @@ let DetailsSty = styled.div`
     border-left: .3px solid rgba(141, 141, 141, 0.582);
     box-sizing: border-box;
     padding-left: 60px;
+    margin-left: 20px
 }
 
 .drink-details{

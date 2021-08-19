@@ -10,6 +10,8 @@ import * as sessionActions from './store/session';
 import * as drinkActions from './store/drinks'
 import * as reviewActions from './store/reviews'
 
+import { ModalProvider } from './context/Modal';
+
 
 const store = configureStore();
 
@@ -29,11 +31,13 @@ if (process.env.NODE_ENV !== 'production') {
 
 function Root() {
   return (
-    <ReduxProvider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ReduxProvider>
+    <ModalProvider>
+      <ReduxProvider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ReduxProvider>
+    </ModalProvider>
   );
 }
 

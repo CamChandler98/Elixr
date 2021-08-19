@@ -2,6 +2,7 @@ import { useParams, NavLink } from "react-router-dom"
 import styled from "styled-components"
 import DrinkReviews from "../ReviewComponents/DrinkReviews"
 import DrinkDetails from "./DrinkDetailComponents/DrinkDetails"
+import ReviewFormModal from "../ReviewComponents/ReviewFormModal"
 import reviewButton from '../DrinkComponents/images/thumbnail/check-in-button.svg'
 const { useEffect } = require("react")
 const { useSelector, useDispatch } = require("react-redux")
@@ -88,7 +89,7 @@ const DrinkPage = () =>{
         </div>
         <div className = 'drink-description'>
             <p>{drink?.description}</p>
-            <img className = 'review-button' src = {reviewButton}/>
+            <ReviewFormModal drinkId = {drinkId}/>
         </div>
         <div className = 'reviews'>
         <DrinkReviews drinkId={drink?.id} />
