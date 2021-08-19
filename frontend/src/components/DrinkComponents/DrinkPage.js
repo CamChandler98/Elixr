@@ -89,7 +89,8 @@ const DrinkPage = () =>{
     let drink = useSelector(state => state.drinks[drinkId])
     let reviewsState = useSelector(state => state.reviews)
 
-    let reviews = Object.values(reviewsState)
+    let allReviews = Object.values(reviewsState)
+    let reviews = allReviews.filter( review => review.drinkId === + drinkId)
     return (
         <DrinkPageSty>
         <div className = 'drink-page'>

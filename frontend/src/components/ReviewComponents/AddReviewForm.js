@@ -108,7 +108,8 @@ const ReviewSliderSty = styled.div`
 
 
 `
-const AddReviewForm = ({drinkId}) =>{
+const AddReviewForm = ({drinkId , closeModal}) =>{
+    console.log(closeModal)
     const dispatch = useDispatch()
 
     useEffect(()=>{
@@ -137,6 +138,7 @@ const AddReviewForm = ({drinkId}) =>{
             setRating(1)
             setImage(null)
             setTempImgUrl('')
+            closeModal()
       }
 
       const removeImage = (e) => {
