@@ -36,15 +36,19 @@ let DrinkPageDetailsSty = styled.div`
 
     let DrinkPageSty = styled.div`
     .drink-page{
-        margin: 3% 10%
+        margin: 3% 10%;
+        display: flex;
+        flex-direction: column;
+        max-width: 800px;
     }
 
         .drink-description{
             margin-left: 1.1%;
-            width: 55%;
             border-bottom: 1px solid rgba(128,128,128,0.692);
             box-sizing: border-box;
             display:flex;
+            align-items: center;
+            gap:2%;
         }
 
         .drink-description > p {
@@ -54,6 +58,11 @@ let DrinkPageDetailsSty = styled.div`
         .review-button{
             width: 70px;
             transform: rotate(10deg)
+        }
+
+        .reviews{
+            display: flex;
+            margin-top: 10%
         }
 `
 
