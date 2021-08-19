@@ -2,13 +2,17 @@ import { csrfFetch } from './csrf';
 const LOAD = 'drinks/load';
 const ADD_DRINK = 'drinks/addDrink'
 const DELETE_DRINK = 'drinks/deleteDrink'
+const CURRENT = 'drinks/current'
 
 const load = list => ({
     type: LOAD,
     list
 })
 
-
+export const current = (id) => ({
+    type: CURRENT,
+    id
+})
 const addOneDrink = drink =>({
     type: ADD_DRINK,
     drink
@@ -26,6 +30,7 @@ export const getDrinks = () => async (dispatch) => {
         dispatch(load(list))
     }
 }
+
 
 export const getOneDrink = (id) => async (dispatch) => {
     const res = await fetch(`/api/drinks/${id}`)
@@ -119,6 +124,13 @@ const drinkReducer = (state = {}, action) => {
                 return newState
             }
             return state
+        }
+        case CURRENT: {
+            let newState = {...state}
+            newState.currentDrink = action.id
+            return {
+                ...newState
+            }
         }
         default:
             return state
