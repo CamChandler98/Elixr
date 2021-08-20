@@ -12,8 +12,7 @@ router.get('/' , asyncHandler( async (req,res) => {
             {model: Drink, attributes: ['name']} ,
             {model: User, attributes: ['username']},
 
-        ],
-        limit: 30
+        ],limit: 30
     })
     res.json(reviews)
 }))
@@ -81,17 +80,12 @@ router.put('/:reviewId' , singleMulterUpload("image"),asyncHandler(async (req,re
 
     let {content, rating, removeImg} = req.body
 
-    let imageUrl = await singlePublicFileUpload(req.file)
-    console.log(imageUrl)
+
     let review = await Review.findByPk(reviewId)
-    console.log(review.content)
+
     review.content = content || review.content
     review.rating = rating || review.rating
-    if(removeImg === 'yes'){
-        review.imageUrl = null
-    }else{
-        review.imageUrl = imageUrl || review.imageUrl
-    }
+
 
     await review.save()
 

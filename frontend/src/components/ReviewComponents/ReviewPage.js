@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom"
 import styled from 'styled-components'
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { getOneReview } from "../../store/reviews"
 import DrinkDetailStyled from "../DrinkComponents/DrinkDetailComponents/DrinkOwnedDetails"
 import { getOneDrink } from "../../store/drinks"
 import ReviewRating from "./ReviewRating"
 import './ReviewPage.css'
+import EditReviewFormModal from "./EditReviewModal"
 
 
 const ReviewPageSty = styled.div`
@@ -47,6 +48,7 @@ const ReviewPageSty = styled.div`
         padding: 25px;
         border-bottom: 1px solid #bbb9bb
     }
+
 `
 
 
@@ -54,6 +56,9 @@ const ReviewPage = () =>{
     console.log('you got here!')
     const dispatch = useDispatch()
     let {reviewId} = useParams()
+    let [owner,setOwner] = useState(false)
+
+    let userId = useSelector(state => state.session.user?.id)
 
     useEffect(()=>{
         dispatch(getOneReview(reviewId))
@@ -63,10 +68,17 @@ const ReviewPage = () =>{
 
     useEffect(()=>{
         if(review){
-        dispatch(getOneDrink(review?.drinkId))}
-    },[review?.drinkId])
+            dispatch(getOneDrink(review?.drinkId))}
+        },[review?.drinkId])
 
-
+        useEffect(()=> {
+            if(userId && review?.userId === userId){
+                setOwner(true)
+            }else{
+                console.log('reviewId', review?.userId)
+                console.log('userId', userId)
+            }
+        },[review, userId])
 
     let drink = useSelector(state => state.drinks[review?.drinkId])
 
@@ -82,6 +94,7 @@ const ReviewPage = () =>{
                 {drink && <DrinkDetailStyled drink = {drink}></DrinkDetailStyled>}
                 <p>{review?.content}</p>
                 <ReviewRating rating = {review?.rating}/>
+                {owner && <EditReviewFormModal drinkId = {drink?.id} review = {review} />}
                 </div>
                 </div>
                 <div className =' review-image'>

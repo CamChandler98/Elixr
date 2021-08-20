@@ -70,8 +70,8 @@ export const addReview = (review) => async (dispatch) => {
 
 }
 export const editReview = (review) => async (dispatch) => {
-    const {image, rating, content, removeImg} = review
-
+    const {image, rating, content, removeImg, id} = review
+    console.log('id', id)
     const formData = new FormData()
 
 
@@ -80,7 +80,8 @@ export const editReview = (review) => async (dispatch) => {
     formData.append('removeImg', removeImg)
 
     if(image) formData.append("image",image)
-    const res = await csrfFetch(`/api/reviews/:reviewId`, {
+    console.log('reviewId',review.id)
+    const res = await csrfFetch(`/api/reviews/${review.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "multipart/form-data",

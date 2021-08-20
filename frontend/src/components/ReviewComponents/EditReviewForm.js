@@ -118,17 +118,15 @@ const EditReviewForm = ({review ,drinkId , closeModal}) =>{
     },[])
 
     let drink = useSelector(state => state.drinks[drinkId])
-    const [content, setContent] = useState('')
-    const [rating , setRating] = useState(1)
+    const [content, setContent] = useState(review?.content)
+    const [rating , setRating] = useState(review?.rating)
     const userId = useSelector(state => state.session.user.id)
 
       const handleSubmit = async (e) =>{
           e.preventDefault()
-            dispatch(editReview({content,rating,image,userId,drinkId}))
+            dispatch(editReview({id: review?.id,content,rating,userId,drinkId}))
             setContent('')
             setRating(1)
-            setImage(null)
-            setTempImgUrl('')
             closeModal()
       }
 
@@ -137,7 +135,7 @@ const EditReviewForm = ({review ,drinkId , closeModal}) =>{
         <div>
             <EditReviewSty>
             <form onSubmit={handleSubmit}>
-                <h2>{drink?.name}</h2>
+                <h2>Edit {drink?.name} Review</h2>
                 <div className= 'content-photo'>
                     <label htmlFor = 'review-content'></label>
                     <textarea
