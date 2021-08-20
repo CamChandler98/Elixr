@@ -13,14 +13,14 @@ let DeleteSty = styled.div`
         align-items: center;
         gap:25px;
         padding:5%;
-        border-radius:4px;
+
     h1{
         font-size: 30px;
         text-align:center;
         font-weight: bold;
         font-family: "Raleway";
     }
-    button{
+    button {
         border: none;
         background-color: rgb(216 73 171);
         font-size: 30px;
@@ -30,6 +30,7 @@ let DeleteSty = styled.div`
         font-family: "Lato";
 
     }
+ 
 `
 let DeleteReview = ({reviewId , closeModal}) =>{
     let dispatch = useDispatch()
@@ -48,7 +49,7 @@ let DeleteReview = ({reviewId , closeModal}) =>{
             <h1>
                 Are you sure? You can not go back
             </h1>
-            <button onClick = {handleSubmit}>Delete</button>
+            <button className = "delete"onClick = {handleSubmit}>Delete</button>
         </div>
         </DeleteSty>
     )
