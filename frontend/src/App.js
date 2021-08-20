@@ -37,7 +37,8 @@ function App() {
         <Route exact path = {'/drinks/:drinkId'}>
           <DrinkPage />
         </Route>
-        {isLoaded && <Route path = {'/review/new'} component = {sessionUser ? AddReviewForm : LoginFormPage}/>}
+        <Route path = {'/review/:reviewId'} component = {} />
+        {/* {isLoaded && <Route path = {'/review/new'} component = {sessionUser ? AddReviewForm : LoginFormPage}/>} */}
       {isLoaded && (
         <Switch>
           <Route path="/login">
@@ -47,7 +48,6 @@ function App() {
             <SignupFormPage />
           </Route>
 
-          <Route path = {'/ureviews'} component = {UserReviews} />
 
 
         </Switch>
