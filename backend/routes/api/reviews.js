@@ -5,13 +5,25 @@ const {singlePublicFileUpload , singleMulterUpload} = require('../../awsS3')
 
 const router = express.Router();
 
+router.get('/' , asyncHandler( async (req,res) => {
+    let reviews = await Review.findAll({
+          order:[['updatedAt', 'ASC']],
+          include: [
+            {model: Drink, attributes: ['name']} ,
+            {model: User, attributes: ['username']},
 
+        ],
+        limit: 30
+    })
+    res.json(reviews)
+}))
 router.get('/drinks/:drinkId', asyncHandler(async (req,res)=>{
     let {drinkId} = req.params
     let reviews = await Review.findAll({
         where:{
             drinkId
           },
+          order:[['updatedAt', 'ASC']],
           include: [
             {model: Drink, attributes: ['name']} ,
             {model: User, attributes: ['username']} ,
@@ -27,6 +39,7 @@ router.get('/users/:userId', asyncHandler(async (req,res)=>{
         where:{
             userId
           },
+          order:['updatedAt','DESC'],
           include: [
             {model: Drink, attributes: ['name']} ,
             {model: User, attributes: ['username']} ,

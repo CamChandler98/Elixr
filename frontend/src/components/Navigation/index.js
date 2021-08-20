@@ -30,6 +30,9 @@ function Navigation({ isLoaded }){
           </NavLink>
       <li>
         {isLoaded && sessionLinks}
+        <NavLink to = '/thecoven'>
+          The Coven
+        </NavLink>
         <NavLink to = '/categories'>
             Categories
         </NavLink>

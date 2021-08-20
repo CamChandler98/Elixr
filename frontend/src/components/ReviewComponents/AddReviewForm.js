@@ -5,6 +5,7 @@ import { addReview } from "../../store/reviews"
 import styled from "styled-components"
 import { getOneDrink } from "../../store/drinks"
 import cameraButton from '../DrinkComponents/images/thumbnail/photo-button.svg'
+import { Redirect } from "react-router-dom"
 
 const AddReviewSty = styled.div`
 h2{
@@ -109,8 +110,8 @@ const ReviewSliderSty = styled.div`
 
 `
 const AddReviewForm = ({drinkId , closeModal}) =>{
-    console.log(closeModal)
     const dispatch = useDispatch()
+
 
     useEffect(()=>{
         dispatch(getOneDrink(drinkId))
