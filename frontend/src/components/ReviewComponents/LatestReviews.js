@@ -1,9 +1,13 @@
 import { useEffect } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { getAllReviews } from "../../store/reviews"
 import ReviewDetails from "./ReviewDetails"
 
 const LatestReviews = () => {
-    useEffect(()=> )
+    let dispatch = useDispatch()
+    useEffect(()=> {
+        dispatch(getAllReviews())
+    },[])
     let reviewsState = useSelector(state => state.reviews)
     let allReviews = Object.values(reviewsState).reverse()
     console.log(allReviews)
