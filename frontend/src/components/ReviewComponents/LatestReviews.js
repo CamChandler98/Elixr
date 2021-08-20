@@ -9,6 +9,7 @@ let ReviewSty = styled.div`
     .reviews{
         display:flex;
         margin: 15%;
+        margin-top: 5%;
         flex-direction: column;
     }
     h1{
@@ -24,7 +25,7 @@ const LatestReviews = () => {
     },[])
     let reviewsState = useSelector(state => state.reviews)
     let allReviews = Object.values(reviewsState).reverse()
-    console.log(allReviews)
+    // console.log(allReviews)
         return(
             <ReviewSty>
             <div className = 'reviews'>

@@ -9,11 +9,10 @@ router.get('/' , asyncHandler( async (req,res) => {
     let reviews = await Review.findAll({
           order:[['updatedAt', 'ASC']],
           include: [
-            {model: Drink, attributes: ['name']} ,
+            {model: Drink, attributes: ['name'], include:[User]} ,
             {model: User, attributes: ['username']},
 
-        ],
-        limit: 30
+        ],limit: 30
     })
     res.json(reviews)
 }))
@@ -25,7 +24,7 @@ router.get('/drinks/:drinkId', asyncHandler(async (req,res)=>{
           },
           order:[['updatedAt', 'ASC']],
           include: [
-            {model: Drink, attributes: ['name']} ,
+            {model: Drink, attributes: ['name'], include:[User]}  ,
             {model: User, attributes: ['username']} ,
         ]
     })
@@ -41,7 +40,7 @@ router.get('/users/:userId', asyncHandler(async (req,res)=>{
           },
           order:['updatedAt','DESC'],
           include: [
-            {model: Drink, attributes: ['name']} ,
+            {model: Drink, attributes: ['name'], include:[User]}  ,
             {model: User, attributes: ['username']} ,
         ]
     })
@@ -68,7 +67,7 @@ router.post('/' , singleMulterUpload("image"),asyncHandler(async (req,res)=> {
             id: newReview.id
           },
           include: [
-            {model: Drink, attributes: ['name']} ,
+            {model: Drink, attributes: ['name'], include:[User]}  ,
             {model: User, attributes: ['username']} ,
         ]
     })
@@ -81,17 +80,12 @@ router.put('/:reviewId' , singleMulterUpload("image"),asyncHandler(async (req,re
 
     let {content, rating, removeImg} = req.body
 
-    let imageUrl = await singlePublicFileUpload(req.file)
-    console.log(imageUrl)
+
     let review = await Review.findByPk(reviewId)
-    console.log(review.content)
+
     review.content = content || review.content
     review.rating = rating || review.rating
-    if(removeImg === 'yes'){
-        review.imageUrl = null
-    }else{
-        review.imageUrl = imageUrl || review.imageUrl
-    }
+
 
     await review.save()
 
@@ -100,7 +94,7 @@ router.put('/:reviewId' , singleMulterUpload("image"),asyncHandler(async (req,re
             id: review.id
           },
           include: [
-            {model: Drink, attributes: ['name']} ,
+            {model: Drink, attributes: ['name'], include:[User]}  ,
             {model: User, attributes: ['username']} ,
         ]
     })
