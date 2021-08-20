@@ -42,6 +42,8 @@ const ReviewDetails = ({reviewId}) => {
 
     let review = useSelector(state => state.reviews[reviewId])
 
+    
+
     return(
         <div className = 'review-details'>
             {console.log(review)}

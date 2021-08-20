@@ -12,6 +12,7 @@ import CategoryPage from "./components/DrinkComponents/Category-Page";
 import DrinkPage from "./components/DrinkComponents/DrinkPage";
 import AddReviewForm from "./components/ReviewComponents/AddReviewForm";
 import UserReviews from "./components/ReviewComponents/UserReviews";
+import LatestReviews from "./components/ReviewComponents/LatestReviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,9 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      <Route exact path ='/thecoven'>
+        <LatestReviews/>
+      </Route>
       <Route exact path = "/categories">
             <CategorySty />
           </Route>

@@ -5,9 +5,9 @@ import { useParams } from "react-router-dom"
 import { getDrinkReviews} from "../../store/reviews"
 import ReviewDetails from "./ReviewDetails"
 const DrinkReviews = ({reviews}) => {
-    const dispatch = useDispatch()
-    console.log(reviews)
-    let {drinkId} = useParams()
+    // const dispatch = useDispatch()
+    // console.log(reviews)
+    // let {drinkId} = useParams()
 
     // let reviews = useSelector(state => state.reviews)
     // useEffect(() => {
