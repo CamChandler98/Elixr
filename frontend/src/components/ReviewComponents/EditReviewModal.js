@@ -10,9 +10,11 @@ let EditSty = styled.div`
         background-color: rgb(198, 135, 231);
         color: white;
         border:none;
-        padding: 1%;
+        padding: 6% 10%;
         margin-top: 5px;
         border-radius: 3px;
+        font-size: 16px;
+        width: 50px;
     }
 
     button:hover{

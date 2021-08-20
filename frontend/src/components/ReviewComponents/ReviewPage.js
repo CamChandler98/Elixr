@@ -49,6 +49,15 @@ const ReviewPageSty = styled.div`
         padding: 25px;
         border-bottom: 1px solid #bbb9bb
     }
+    .buttons{
+        display: flex;
+        gap:20px;
+        padding-top:12px;
+    }
+    button:hover{
+        cursor: pointer;
+        background-color: rgb(198, 135, 231);
+    }
 
 `
 
@@ -96,8 +105,10 @@ const ReviewPage = () =>{
                 {drink && <DrinkDetailStyled drink = {drink}></DrinkDetailStyled>}
                 <p>{review?.content}</p>
                 <ReviewRating rating = {review?.rating}/>
+                <div className= "buttons">
                 {owner && <EditReviewFormModal drinkId = {drink?.id} review = {review} />}
                 {owner && <DeleteReviewModal reviewId = {review?.id}></DeleteReviewModal>}
+                </div>
                 </div>
                 </div>
                 <div className =' review-image'>
