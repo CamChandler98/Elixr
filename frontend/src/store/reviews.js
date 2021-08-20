@@ -29,6 +29,12 @@ const load = reviewList => ({
     reviewList
 })
 
+export const getAllReviews = () => async (dispatch) =>{
+    let res = await fetch(`/api/reviews`)
+    let reviewList = await res.json()
+
+    dispatch(load(reviewList))
+}
 export const removeReview = (reviewId) => async (dispatch) => {
     let res = await csrfFetch(`/api/reviews/${reviewId}`,{
         method: 'delete'
