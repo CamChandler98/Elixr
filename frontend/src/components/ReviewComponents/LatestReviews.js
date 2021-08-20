@@ -11,6 +11,11 @@ let ReviewSty = styled.div`
         margin: 15%;
         flex-direction: column;
     }
+    h1{
+        font-size: 30px;
+        align-self:center;
+        margin-bottom: 20px
+    }
 `
 const LatestReviews = () => {
     let dispatch = useDispatch()
@@ -23,6 +28,7 @@ const LatestReviews = () => {
         return(
             <ReviewSty>
             <div className = 'reviews'>
+                <h1>Latest Reviews</h1>
                 {allReviews && allReviews.map(review => {
                 return (
                     <ReviewDetails key = {review.id} reviewId= {review.id}></ReviewDetails>
