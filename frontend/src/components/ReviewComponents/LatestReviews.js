@@ -24,7 +24,7 @@ const LatestReviews = () => {
     },[])
     let reviewsState = useSelector(state => state.reviews)
     let allReviews = Object.values(reviewsState).reverse()
-    console.log(allReviews)
+    // console.log(allReviews)
         return(
             <ReviewSty>
             <div className = 'reviews'>

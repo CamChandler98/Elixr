@@ -35,7 +35,7 @@ const ReviewDetailSty = styled.div`
 `
 const ReviewDetails = ({reviewId}) => {
     let dispatch = useDispatch()
-    console.log('reviewid',reviewId)
+    // console.log('reviewid',reviewId)
     useEffect(() => {
         dispatch(getOneReview(parseInt(reviewId)))
     },[reviewId,dispatch])
@@ -46,7 +46,6 @@ const ReviewDetails = ({reviewId}) => {
 
     return(
         <div className = 'review-details'>
-            {console.log(review)}
             {review &&
                     <ReviewDetailSty>
                        <div className = 'review-details'>
@@ -60,9 +59,8 @@ const ReviewDetails = ({reviewId}) => {
                            <img className ='user-pic' src = {review?.imageUrl}></img>
                        </div>}
                        <div>
-                           <NavLink to= {`/reviews/:reviewId`}>view detailed review</NavLink>
+                           <NavLink to= {`/reviews/${review.id}`}>view detailed review</NavLink>
                        </div>
-
                    </div>
                 </ReviewDetailSty>
             }
