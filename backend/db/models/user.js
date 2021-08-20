@@ -54,12 +54,20 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Drink, {foreignKey: 'creatorId'})
     User.hasMany(models.Review, {foreignKey: 'userId'})
 
-    User.belongsToMany(models.User,{through: 'Friends', foreignKey:'userOneId', otherKey : 'userTwoId' })
-    User.belongsToMany(models.User,{through: 'Friends', foreignKey:'userTwoId', otherKey : 'userOneId' })
+    User.belongsToMany(models.User,{
+      as:'friends',
+      through: 'Friends',
+      foreignKey:'userOneId',
+      otherKey : 'userTwoId' })
+    User.belongsToMany(models.User,{
+      as: 'userFriends',
+      through:'Friends',
+      foreignKey:'userTwoId',
+       otherKey : 'userOneId' })
 
 
-    User.belongsToMany(models.User,{through: 'Friends', foreignKey:'userOneId', otherKey : 'userTwoId' })
-    User.belongsToMany(models.User,{through: 'Friends', foreignKey:'userTwoId', otherKey : 'userOneId' })
+    User.belongsToMany(models.User,{as: 'requester',through: 'Requests', foreignKey:'userOneId', otherKey : 'userTwoId' })
+    User.belongsToMany(models.User,{as: 'reciever',through: 'Requests', foreignKey:'userTwoId', otherKey : 'userOneId' })
 
   };
   User.prototype.toSafeObject = function() { // remember, this cannot be an arrow function
