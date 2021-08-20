@@ -53,12 +53,15 @@ const ReviewDetails = ({reviewId}) => {
     let dispatch = useDispatch()
     // console.log('reviewid',reviewId)
     useEffect(() => {
-        dispatch(getOneReview(parseInt(reviewId)))
+        if(reviewId){
+        dispatch(getOneReview(parseInt(reviewId)))}
     },[reviewId,dispatch])
 
     let review = useSelector(state => state.reviews[reviewId])
 
-
+    useEffect(()=>{
+        console.log('reset')
+    },[review])
 
     return(
         <div className = 'review-details'>

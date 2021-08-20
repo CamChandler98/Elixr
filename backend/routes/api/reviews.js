@@ -9,7 +9,7 @@ router.get('/' , asyncHandler( async (req,res) => {
     let reviews = await Review.findAll({
           order:[['updatedAt', 'ASC']],
           include: [
-            {model: Drink, attributes: ['name']} ,
+            {model: Drink, attributes: ['name'], include:[User]} ,
             {model: User, attributes: ['username']},
 
         ],limit: 30
@@ -24,7 +24,7 @@ router.get('/drinks/:drinkId', asyncHandler(async (req,res)=>{
           },
           order:[['updatedAt', 'ASC']],
           include: [
-            {model: Drink, attributes: ['name']} ,
+            {model: Drink, attributes: ['name'], include:[User]}  ,
             {model: User, attributes: ['username']} ,
         ]
     })
@@ -40,7 +40,7 @@ router.get('/users/:userId', asyncHandler(async (req,res)=>{
           },
           order:['updatedAt','DESC'],
           include: [
-            {model: Drink, attributes: ['name']} ,
+            {model: Drink, attributes: ['name'], include:[User]}  ,
             {model: User, attributes: ['username']} ,
         ]
     })
@@ -67,7 +67,7 @@ router.post('/' , singleMulterUpload("image"),asyncHandler(async (req,res)=> {
             id: newReview.id
           },
           include: [
-            {model: Drink, attributes: ['name']} ,
+            {model: Drink, attributes: ['name'], include:[User]}  ,
             {model: User, attributes: ['username']} ,
         ]
     })
@@ -94,7 +94,7 @@ router.put('/:reviewId' , singleMulterUpload("image"),asyncHandler(async (req,re
             id: review.id
           },
           include: [
-            {model: Drink, attributes: ['name']} ,
+            {model: Drink, attributes: ['name'], include:[User]}  ,
             {model: User, attributes: ['username']} ,
         ]
     })

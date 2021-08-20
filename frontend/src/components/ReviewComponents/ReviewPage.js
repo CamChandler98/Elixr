@@ -8,6 +8,7 @@ import { getOneDrink } from "../../store/drinks"
 import ReviewRating from "./ReviewRating"
 import './ReviewPage.css'
 import EditReviewFormModal from "./EditReviewModal"
+import DeleteReviewModal from "./DeleteReviewModal"
 
 
 const ReviewPageSty = styled.div`
@@ -61,7 +62,8 @@ const ReviewPage = () =>{
     let userId = useSelector(state => state.session.user?.id)
 
     useEffect(()=>{
-        dispatch(getOneReview(reviewId))
+        if(reviewId){
+        dispatch(getOneReview(reviewId))}
     },[])
 
     let review = useSelector(state => state.reviews[reviewId])
@@ -95,6 +97,7 @@ const ReviewPage = () =>{
                 <p>{review?.content}</p>
                 <ReviewRating rating = {review?.rating}/>
                 {owner && <EditReviewFormModal drinkId = {drink?.id} review = {review} />}
+                {owner && <DeleteReviewModal reviewId = {review?.id}></DeleteReviewModal>}
                 </div>
                 </div>
                 <div className =' review-image'>
