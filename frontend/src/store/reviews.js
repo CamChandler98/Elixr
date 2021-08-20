@@ -74,7 +74,7 @@ export const addReview = (review) => async (dispatch) => {
 }
 export const editReview = (review) => async (dispatch) => {
     const {image, rating, content, removeImg, id} = review
-    console.log('id', id)
+
     const formData = new FormData()
 
 
@@ -83,7 +83,7 @@ export const editReview = (review) => async (dispatch) => {
     formData.append('removeImg', removeImg)
 
     if(image) formData.append("image",image)
-    console.log('reviewId',review.id)
+
     const res = await csrfFetch(`/api/reviews/${review.id}`, {
         method: "PUT",
         headers: {
@@ -120,7 +120,6 @@ export const getOneReview = (reviewId) => async (dispatch) => {
 
     if(res.ok){
         const review = await res.json(
-
         )
         dispatch(add(review))
     }
@@ -139,6 +138,7 @@ const reviewReducer = (state = {}, action) => {
             }
         }
         case ADD: {
+            if(!action.review){return ({...state})}
             if(!state[action.review.id]){
                 return{
                     ...state,

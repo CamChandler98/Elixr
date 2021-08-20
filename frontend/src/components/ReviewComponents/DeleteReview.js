@@ -8,7 +8,8 @@ let DeleteReview = ({reviewId , closeModal}) =>{
     let handleSubmit = () =>{
         dispatch(removeReview(reviewId))
         closeModal()
-     return  <Redirect to = {'/categories'}/>
+        return history.goBack()
+        // return  (<Redirect to = {'/categories'}/>)
     }
 
 

@@ -59,10 +59,6 @@ const ReviewDetails = ({reviewId}) => {
 
     let review = useSelector(state => state.reviews[reviewId])
 
-    useEffect(()=>{
-        console.log('reset')
-    },[review])
-
     return(
         <div className = 'review-details'>
             {review &&
