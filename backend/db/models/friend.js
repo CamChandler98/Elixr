@@ -1,4 +1,5 @@
 'use strict';
+const { Op } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   const Friend = sequelize.define('Friend', {
     userOneId: DataTypes.INTEGER,
@@ -9,5 +10,19 @@ module.exports = (sequelize, DataTypes) => {
     Friend.belongsTo(models.User, {foreignKey: 'userOneId'})
     Friend.belongsTo(models.User, {foreignKey: 'userTwoId'})
   };
+
+  Friend.getUserFriends = async function(id){
+    let friends = await Friend.findAll({
+          where: {
+              [Op.or]: [
+                {userOneId : id},
+                {userTwoId: id}
+              ]
+          }
+       })
+
+       return friends
+
+  }
   return Friend;
 };
