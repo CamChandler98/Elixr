@@ -10,8 +10,10 @@ router.get('/' , asyncHandler( async (req,res) => {
           order:[['updatedAt', 'ASC']],
           include: [
             {model: Drink, attributes: ['name']} ,
-            {model: User, attributes: ['username']} ,
-        ]
+            {model: User, attributes: ['username']},
+
+        ],
+        limit: 30
     })
     res.json(reviews)
 }))
