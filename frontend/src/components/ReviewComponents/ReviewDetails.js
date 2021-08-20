@@ -17,6 +17,8 @@ const ReviewDetailSty = styled.div`
     .review-image{
         display:flex;
         justify-content:center;
+        box-shadow: 0 1px 1px 0 rgb(0 0 0 / 10%);
+        padding: 1%
     }
     .user-pic{
         width: 775px;
@@ -31,6 +33,20 @@ const ReviewDetailSty = styled.div`
         border-radius: 7px;
         box-sizing: border-box;
         padding: 10px 15px;
+    }
+    a{
+        text-decoration: none;
+        color: rgb(198, 135, 231);
+        font-weight: 500;
+    }
+    a:hover{
+
+        color: rgb(95 44 121);
+        font-weight:bold;
+
+    }
+    .detail-link{
+        margin-top: 15px;
     }
 `
 const ReviewDetails = ({reviewId}) => {
@@ -58,7 +74,7 @@ const ReviewDetails = ({reviewId}) => {
                         {review.imageUrl && <div className = 'review-image'>
                            <img className ='user-pic' src = {review?.imageUrl}></img>
                        </div>}
-                       <div>
+                       <div className = 'detail-link'>
                            <NavLink to= {`/reviews/${review.id}`}>view detailed review</NavLink>
                        </div>
                    </div>

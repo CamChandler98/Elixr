@@ -10,10 +10,16 @@ import './ReviewPage.css'
 
 
 const ReviewPageSty = styled.div`
-
+    .test{
+        width:100%;
+        background-color: #fbf6f0;
+        height: 100vh;
+        margin:0;
+        position:fixed;
+    }
     .full-review{
         display: flex;
-        margin:20%;
+        margin: 5% 20%;
         gap: 30px;
     }
 
@@ -50,23 +56,24 @@ const ReviewPage = () =>{
     let {reviewId} = useParams()
 
     useEffect(()=>{
-        console.log('getting review')
         dispatch(getOneReview(reviewId))
     },[])
 
     let review = useSelector(state => state.reviews[reviewId])
 
     useEffect(()=>{
-        dispatch(getOneDrink(review?.drinkId))
+        if(review){
+        dispatch(getOneDrink(review?.drinkId))}
     },[review?.drinkId])
+
+
 
     let drink = useSelector(state => state.drinks[review?.drinkId])
 
-    console.log(drink)
     return(
 
         <ReviewPageSty>
-        <>
+        <div className = 'test'>
             {review &&
                 <div className = 'full-review'>
                 <div className = 'review-content'>
@@ -82,7 +89,7 @@ const ReviewPage = () =>{
                 </div>
                 </div>
             }
-        </>
+        </div>
         </ReviewPageSty>
     )
 

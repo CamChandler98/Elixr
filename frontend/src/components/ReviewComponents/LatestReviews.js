@@ -9,6 +9,7 @@ let ReviewSty = styled.div`
     .reviews{
         display:flex;
         margin: 15%;
+        margin-top: 5%;
         flex-direction: column;
     }
     h1{
