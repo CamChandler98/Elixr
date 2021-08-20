@@ -14,12 +14,32 @@ const ReviewPageSty = styled.div`
     .full-review{
         display: flex;
         margin:20%;
-
+        gap: 30px;
     }
 
     .review-image img{
         height: 500px;
         width:auto;
+        box-shadow: 0 1px 1px 0 rgb(0 0 0 / 10%);
+    }
+
+    .review-content{
+        background-color: white;
+        display:flex;
+        flex-direction: column;
+        height: fit-content;
+        padding-bottom:40px;
+        box-shadow: 0 1px 1px 0 rgb(0 0 0 / 10%);
+
+    }
+    h1{
+        font-size: 25px;
+        padding:25px;
+        border-bottom: 1px solid #bbb9bb
+    }
+    .review-bottom{
+        padding: 25px;
+        border-bottom: 1px solid #bbb9bb
     }
 `
 
@@ -51,9 +71,11 @@ const ReviewPage = () =>{
                 <div className = 'full-review'>
                 <div className = 'review-content'>
                 <h1>{review?.User?.username}</h1>
+                <div className = 'review-bottom'>
                 {drink && <DrinkDetailStyled drink = {drink}></DrinkDetailStyled>}
                 <p>{review?.content}</p>
                 <ReviewRating rating = {review?.rating}/>
+                </div>
                 </div>
                 <div className =' review-image'>
                 <img src = {review?.imageUrl}/>
