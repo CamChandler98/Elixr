@@ -7,11 +7,13 @@ import { getUserReviews } from "../../store/reviews"
 const ProfilePage = () => {
 
     let {username} = useParams()
-
+    console.log('username',username)
     let dispatch = useDispatch()
     useEffect(()=>{
         dispatch(getUser(username))
     })
+
+    let userId = useSelector(state => state.profile.user.id)
     useEffect(()=> {
         dispatch(getUserReviews(userId))
     })
