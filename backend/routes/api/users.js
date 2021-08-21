@@ -29,6 +29,16 @@ const validateSignup = [
     handleValidationErrors,
   ];
 
+router.get('/:username', asyncHandler( async (req,res) => {
+    const {username} = req.params
+
+    let found  = await User.findOne({
+      where: {username}
+    })
+    let user = found.toSafeObject()
+
+    res.json(user)
+}))
 router.post(
     '/',
     validateSignup,
