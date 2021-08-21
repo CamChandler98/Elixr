@@ -6,8 +6,9 @@ const get = (user) => ({
 })
 
 export const getUser = (username) => async (dispatch) =>{
-    let res = await fetch(`/api/user/:username`)
-    
+    let res = await fetch(`/api/user/${username}`)
+    let user = await res.json()
+    dispatch(get(user))
 }
 
 const profileReducer = (state = {}, action) =>{
@@ -23,3 +24,5 @@ const profileReducer = (state = {}, action) =>{
             return state
     }
 }
+
+export default profileReducer

@@ -1,14 +1,17 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
+import { getUser } from "../../store/profile"
 import { getUserReviews } from "../../store/reviews"
 
 const ProfilePage = () => {
 
-    let {userId} = useParams
+    let {username} = useParams()
 
     let dispatch = useDispatch()
-
+    useEffect(()=>{
+        dispatch(getUser(username))
+    })
     useEffect(()=> {
         dispatch(getUserReviews(userId))
     })
