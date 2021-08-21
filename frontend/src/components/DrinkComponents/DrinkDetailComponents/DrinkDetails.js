@@ -28,7 +28,7 @@ let DetailsSty = styled.div`
     border-bottom: 1px solid rgba(128, 128, 128, 0.692) ;
     border-top: 1px solid rgba(128, 128, 128, 0.692);
     box-sizing: border-box;
-    min-width: 700px;
+
 }
 `
 const DrinkDetailsUnstyled = ({drinkId}) =>{
@@ -39,16 +39,18 @@ const DrinkDetailsUnstyled = ({drinkId}) =>{
         dispatch(getOneDrink(parseInt(drinkId)))}
     },[dispatch,drinkId])
 
-    let drink = useSelector(state => state?.drinks[drinkId])
+    let drink = useSelector(state => state.drinks[drinkId])
     console.log('drink from drink details', drink)
     return (
-        <div className = 'drink-details'>
+        <>
+       {drink && <div className = 'drink-details'>
                 <DrinkDetailStyled drink = {drink}></DrinkDetailStyled>
             <div className = 'drink-details-right'>
                 <span className= 'total-ratings'>Total ratings: {drink?.count}</span>
                 <span className = 'average-rating'>Average rating: {drink?.avg}</span>
             </div>
-        </div>
+        </div>}
+        </>
     )
 }
 

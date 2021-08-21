@@ -13,7 +13,7 @@ const {getDrinkReviews} = require('../../store/reviews')
 let DrinkPageDetailsSty = styled.div`
     h2{
         font-size: 30px;
-        font-weight: 400
+        font-weight: 400;
 
     }
     span{
