@@ -27,7 +27,8 @@ const ReviewPageSty = styled.div`
 
     .review-image img{
         height: 500px;
-        width:auto;
+        max-width: 400px;
+        object-fit: scale-down;
         box-shadow: 0 1px 1px 0 rgb(0 0 0 / 10%);
     }
 

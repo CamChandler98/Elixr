@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getUser } from "../../store/profile"
@@ -6,7 +6,7 @@ import { getUserReviews } from "../../store/reviews"
 import UserReviews from '../ReviewComponents/UserReviews'
 
 const ProfilePage = () => {
-
+    const [focus, setFocus] = useState('user')
     let {username} = useParams()
     console.log('username',username)
 
@@ -16,23 +16,28 @@ const ProfilePage = () => {
         dispatch(getUser(username))
     },[])
 
-    let userId = useSelector(state => state.profile?.id)
-    console.log(userId)
+    let user = useSelector(state => state?.profile)
+
     useEffect(()=> {
         console.log('getting reviews')
-        if(userId){
-        dispatch(getUserReviews(userId))
+        if(user.id){
+        dispatch(getUserReviews(user.id))
         }
-    },[userId])
+    },[user.id])
 
-    let reviewsState = useSelector (state => state.reviews.userReviews)
-    let allReviews = Object.values(reviewsState)
-    let reviews = allReviews.filter( review => review.userId === + userId).reverse()
+    let reviews = useSelector (state => state.reviews.userReviews)
+
     console.log(reviews)
     return (
         <>
         <div>
-            {reviews && <UserReviews reviews = {reviews} />}
+            {user && <h1>{user.username}</h1>}
+
+            {reviews && <h2>Total Reviews: {reviews.length}</h2>}
+        </div>
+        <div>
+            {reviews && focus === 'user' && <UserReviews reviews = {reviews} />}
+            
         </div>
         </>
     )
