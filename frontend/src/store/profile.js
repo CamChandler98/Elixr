@@ -6,7 +6,7 @@ const get = (user) => ({
 })
 
 export const getUser = (username) => async (dispatch) =>{
-    let res = await fetch(`/api/user/${username}`)
+    let res = await fetch(`/api/users/${username}`)
     let user = await res.json()
     dispatch(get(user))
 }
