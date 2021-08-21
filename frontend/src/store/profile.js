@@ -1,0 +1,25 @@
+const GET = 'profile/get'
+
+const get = (user) => ({
+    type: GET,
+    user
+})
+
+export const getUser = (username) => async (dispatch) =>{
+    let res = await fetch(`/api/user/:username`)
+    
+}
+
+const profileReducer = (state = {}, action) =>{
+    switch(action.type){
+        case GET:{
+            let newState = {...state}
+            newState.profile = action.user
+            return{
+                ...newState
+            }
+        }
+        default:
+            return state
+    }
+}

@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getUserReviews } from "../../store/reviews"
 
@@ -13,10 +13,10 @@ const ProfilePage = () => {
         dispatch(getUserReviews(userId))
     })
 
-    let reviewsState = useSelector(state => state.reviews)
+    let reviewsState = useSelector (state => state.reviews)
     let allReviews = Object.values(reviewsState)
-    let reviews = allReviews.filter( review => review.drinkId === + drinkId).reverse()
-
+    let reviews = allReviews.filter( review => review.userId === + userId).reverse()
+    console.log(reviews)
     return (
         <>
         <h1>Hi</h1>
