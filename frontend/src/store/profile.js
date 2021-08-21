@@ -15,7 +15,7 @@ const profileReducer = (state = {}, action) =>{
     switch(action.type){
         case GET:{
             let newState = {...state}
-            newState.profile = action.user
+            newState = action.user
             return{
                 ...newState
             }

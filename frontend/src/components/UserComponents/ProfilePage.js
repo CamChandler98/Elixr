@@ -8,15 +8,17 @@ const ProfilePage = () => {
 
     let {username} = useParams()
     console.log('username',username)
+
     let dispatch = useDispatch()
     useEffect(()=>{
+        console.log('getting name')
         dispatch(getUser(username))
-    })
+    },[])
 
-    let userId = useSelector(state => state.profile.user.id)
+    let userId = useSelector(state => state.profile?.user?.id)
     useEffect(()=> {
         dispatch(getUserReviews(userId))
-    })
+    },[])
 
     let reviewsState = useSelector (state => state.reviews)
     let allReviews = Object.values(reviewsState)
