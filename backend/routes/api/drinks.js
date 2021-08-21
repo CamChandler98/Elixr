@@ -12,7 +12,12 @@ router.post('/', asyncHandler(async (req, res)=> {
 }))
 
 router.get('/', asyncHandler(async (req, res)=> {
-    let allDrinks = await Drink.findAll()
+    let allDrinks = await Drink.findAll({
+        include: [
+            {model: Category, attributes: ['name']} ,
+            {model: User, attributes: ['username']} ,
+        ]
+    })
    return res.json(allDrinks)
 }))
 

@@ -35,11 +35,12 @@ const DrinkDetailsUnstyled = ({drinkId}) =>{
     let dispatch = useDispatch()
 
     useEffect(()=>{
-        dispatch(getOneDrink(parseInt(drinkId)))
+        if(drinkId){
+        dispatch(getOneDrink(parseInt(drinkId)))}
     },[dispatch,drinkId])
 
-    let drink = useSelector(state => state.drinks[drinkId])
-
+    let drink = useSelector(state => state?.drinks[drinkId])
+    console.log('drink from drink details', drink)
     return (
         <div className = 'drink-details'>
                 <DrinkDetailStyled drink = {drink}></DrinkDetailStyled>
