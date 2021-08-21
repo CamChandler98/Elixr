@@ -1,9 +1,10 @@
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 import splashImage from '../DrinkComponents/images/thumbnail/logo.svg'
 import background from '../DrinkComponents/images/thumbnail/background.svg'
+import * as sessionActions from '../../store/session';
 
 let SplashSty =styled.div `
 @import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
@@ -61,12 +62,21 @@ let NavSty = styled.div`
         text-decoration: none;
         background-color: #5F1A37;
         color: white;
-        padding: 5% 10%;
+        padding: 5% 15%;
         border-radius: 5px;
     }
 `
 let SpalshPage = ({isLoaded}) => {
 
+    let dispatch = useDispatch()
+
+    const demoLogin = () =>{
+        let credential = 'Nimue'
+        let  password = 'password'
+
+
+        return dispatch(sessionActions.login({ credential, password }))
+    }
     const sessionUser = useSelector(state => state.session.user);
 
     if(sessionUser){
@@ -107,6 +117,7 @@ let SpalshPage = ({isLoaded}) => {
                 <NavLink  to = '/signup'>
                     <span>Signup</span>
                 </NavLink>
+                <a onClick = {demoLogin}>Demo</a>
                 </NavSty>
                 </div>
             </div>
