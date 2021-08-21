@@ -34,16 +34,7 @@ let SplashSty =styled.div `
         height:100vh;
 
     }
-    .link-container{
-        display: flex;
-        justify-content:center;
-        flex-direction: column;
-        align-items:center;
-        background-color: white;
-        width: 300px;
-        padding: 3%;
-        gap:25px;
-    }
+
     h1{
         font-size:80px;
     }
@@ -53,23 +44,26 @@ let SplashSty =styled.div `
     .grey{
         color: grey;
     }
-    .form-button {
-        margin-top: 10px;
-        margin-bottom: 5px;
-        height: 40px;
-        color: #fff;
-        border: none;
-        outline: none;
-        background-color: #5F1A37;
-        font-size: 14px;
-        border-radius: 6px;
-        text-justify: center;
-    }
-    NavLink{
+`
 
-        background-color: #5F1A37;
-    }
+let NavSty = styled.div`
+    display: flex;
+    justify-content:center;
+    flex-direction: column;
+    align-items:center;
+    background-color: white;
+    padding: 3%;
+    gap:25px;
+    width:300px;
+    box-shadow: 0 1px 1px 0 rgb(0 0 0 / 10%);
 
+    a{
+        text-decoration: none;
+        background-color: #5F1A37;
+        color: white;
+        padding: 5% 10%;
+        border-radius: 5px;
+    }
 `
 let SpalshPage = ({isLoaded}) => {
 
@@ -105,12 +99,15 @@ let SpalshPage = ({isLoaded}) => {
             </div>
             <div className = 'right-side'>
                 <div className = 'link-container'>
+                    <NavSty>
+                <span>Login here</span>
                 <NavLink to = '/login'>
-                    Login
+                    <span>Login</span>
                 </NavLink>
-                <NavLink to = '/signup'>
-                    Signup
+                <NavLink  to = '/signup'>
+                    <span>Signup</span>
                 </NavLink>
+                </NavSty>
                 </div>
             </div>
             </div>
