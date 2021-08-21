@@ -14,6 +14,7 @@ import AddReviewForm from "./components/ReviewComponents/AddReviewForm";
 import UserReviews from "./components/ReviewComponents/UserReviews";
 import LatestReviews from "./components/ReviewComponents/LatestReviews";
 import ReviewPage from "./components/ReviewComponents/ReviewPage";
+import SpalshPage from "./components/ReviewComponents/SpalshPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,11 +26,17 @@ function App() {
 
   return (
     <>
+      <Switch>
+      <Route exact path = '/'>
+        <SpalshPage isLoaded = {isLoaded}/>
+      </Route>
+
+      <>
       <Navigation isLoaded={isLoaded} />
       <Route exact path ='/thecoven'>
         <LatestReviews/>
       </Route>
-      <Route exact path = "/categories">
+      <Route isLoaded = {isLoaded} exact path = "/categories">
             <CategorySty />
           </Route>
           <Route path = {'/categories/:categoryId/:categoryName'}>
@@ -48,11 +55,11 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-
-
-
         </Switch>
-      )}
+
+      )
+      }</>
+      </Switch>
       {/* <Switch>
       <Route exact path = "/categories">
             <CategorySty />
