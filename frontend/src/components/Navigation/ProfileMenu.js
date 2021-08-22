@@ -30,7 +30,7 @@ let ProfileMenuSty = styled.div`
     }
 `
 
-const ProfileMenu = () => {
+const ProfileMenu = ({logout}) => {
     const sessionUser = useSelector(state => state.session.user)
     return(
         <ProfileMenuSty>
@@ -43,6 +43,9 @@ const ProfileMenu = () => {
                 <NavLink to = {`/users/${sessionUser?.username}`}>
                 My Profile
                 </NavLink>
+            </li>
+            <li onClick = {logout}>
+                Logout
             </li>
         </ul>
         </>
