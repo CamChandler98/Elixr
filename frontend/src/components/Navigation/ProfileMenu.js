@@ -5,7 +5,7 @@ import ProfileButton from "./ProfileButton"
 
 let ProfileMenuSty = styled.div`
     position: absolute;
-    right: 20px;
+    right: 4.5%;
     background-color: rgb(47, 53, 59);
     padding: 2%;
     box-shadow:box-shadow: 0 1px 1px 0 rgb(0 0 0 / 10%);

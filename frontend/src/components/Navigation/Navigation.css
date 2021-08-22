@@ -39,11 +39,11 @@ header li{
 }
 
 .left-side{
-    margin: 0px 20px;
+    margin: 0px 10%;
 }
 .right-side{
     margin-left: auto;
-    margin-right: 60px;
+    margin-right: 10%;
 
 }
 .active{
