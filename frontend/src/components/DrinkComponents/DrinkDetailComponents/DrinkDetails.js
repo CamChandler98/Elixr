@@ -30,6 +30,13 @@ let DetailsSty = styled.div`
     box-sizing: border-box;
 
 }
+.link-text{
+    text-decoration:none;
+}
+.link-text:hover{
+    transform: scale(1.01);
+    color: rgba(169,140,209,1);
+}
 `
 const DrinkDetailsUnstyled = ({drinkId}) =>{
     let dispatch = useDispatch()

@@ -14,7 +14,7 @@ router.post('/', asyncHandler(async (req, res)=> {
 router.get('/', asyncHandler(async (req, res)=> {
     let allDrinks = await Drink.findAll({
         include: [
-            {model: Category, attributes: ['name']} ,
+            {model: Category, attributes: ['name','id']} ,
             {model: User, attributes: ['username']} ,
         ]
     })
@@ -26,8 +26,8 @@ router.get('/:id(\\d+)', asyncHandler( async (req,res)=> {
     const drink = await Drink.findOne({
         where:{id},
         include: [
-            {model: Category, attributes: ['name']} ,
-            {model: User, attributes: ['username']} ,
+            {model: Category, attributes: ['name','id']} ,
+            {model: User, attributes: ['username',]} ,
         ]
     })
     let averageRes = await Review.getDrinkRating(id)

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { NavLink, useParams } from "react-router-dom"
 import styled from 'styled-components'
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
@@ -59,6 +59,13 @@ const ReviewPageSty = styled.div`
         cursor: pointer;
         background-color: rgb(198, 135, 231);
     }
+    a{
+        text-decoration:none;
+    }
+    a:hover{
+        transform: scale(1.01);
+        color: rgba(169,140,209,1)
+    }
 
 `
 
@@ -101,7 +108,7 @@ const ReviewPage = () =>{
             {review &&
                 <div className = 'full-review'>
                 <div className = 'review-content'>
-                <h1>{review?.User?.username}</h1>
+                <NavLink to = {`/users/${review?.User?.username}`}><h1>{review?.User?.username}</h1></NavLink>
                 <div className = 'review-bottom'>
                 {drink && <DrinkDetailStyled drink = {drink}></DrinkDetailStyled>}
                 <p>{review?.content}</p>
