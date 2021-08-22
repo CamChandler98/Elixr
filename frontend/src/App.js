@@ -34,7 +34,7 @@ function App() {
         <LatestReviews/>
       </Route>
       <Route isLoaded = {isLoaded} exact path = "/categories">
-            <CategorySty />
+            <CategorySty isLoaded = {isLoaded}/>
           </Route>
           <Route path = {'/categories/:categoryId/:categoryName'}>
           <CategoryPage />
@@ -56,22 +56,9 @@ function App() {
             <ProfilePage />
           </Route>
         </Switch>
-
       )
       }</>
       </Switch>
-      {/* <Switch>
-      <Route exact path = "/categories">
-            <CategorySty />
-          </Route>
-          <Route path = {'/categories/:categoryId/:categoryName'}>
-          <CategoryPage />
-        </Route>
-        <Route path = {'/drinks/:drinkId'}>
-          <DrinkPage />
-        </Route>
-        {isLoaded && <Route path = {'/review/new'} component = {sessionUser ? AddReviewForm : LoginFormPage}/>}
-      </Switch> */}
     </>
   );
 }

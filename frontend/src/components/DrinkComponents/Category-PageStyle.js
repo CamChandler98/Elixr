@@ -110,10 +110,10 @@ const Image = styled.div`
     }
 `;
 
-const CategorySty = () => {
+const CategorySty = ({isLoaded}) => {
     return (
         <>
-        {Image && <Image>
+        {isLoaded && <Image>
             <DrinkCategoriesPage />
         </Image>}
         </>
