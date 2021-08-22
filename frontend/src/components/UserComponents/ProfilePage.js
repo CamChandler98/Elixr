@@ -48,7 +48,8 @@ let ProfileSty = styled.div`
         gap: 15px;
     }
     .focused{
-        color:red;
+        color: rgb(117 66 144);
+        font-weight: bold;
     }
 `
 
@@ -127,7 +128,7 @@ const ProfilePage = () => {
             {drinks && <h3>Brewed {drinks.length} {drinks.length === 1   ? 'Potion': 'Potions'}</h3>}
         </div>
         <div className = 'switch-bar'>
-            <span className ='bar-item' onClick = {(e)=> switchFocus('user',e)}>{owner ? 'Your': user?.username} Reviews</span>
+            <span className ='bar-item focused' onClick = {(e)=> switchFocus('user',e)}>{owner ? 'Your': user?.username} Reviews</span>
             <span className ='bar-item' onClick = {(e)=> switchFocus('drinks',e)}>{owner ? 'Your': user?.username} Drinks</span>
         </div>
         <div className = 'focus-content'>
