@@ -1,49 +1,48 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import ProfileMenu from "./ProfileMenu";
+import faceButton from '../DrinkComponents/images/thumbnail/profile-icon.svg'
+import styled from 'styled-components'
 
-function ProfileButton({ user }) {
-  const dispatch = useDispatch();
-  const [showMenu, setShowMenu] = useState(false);
+const ProfileButtonSty = styled.div`
+  img{
+    height: 60px;
+    margin-top: 10px
+  }
+`
 
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-  };
+let ProfileButton = () => {
+    const dispatch = useDispatch();
+    const [showMenu, setShowMenu] = useState(false);
+    const openMenu = () => {
+        if (showMenu) return;
+        setShowMenu(true);
+      };
+      useEffect(() => {
+        if (!showMenu) return;
 
-  useEffect(() => {
-    if (!showMenu) return;
+        const closeMenu = () => {
+          setShowMenu(false);
+        };
 
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
+        document.addEventListener('click', closeMenu);
 
-    document.addEventListener('click', closeMenu);
+        return () => document.removeEventListener("click", closeMenu);
+      }, [showMenu]);
 
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
-
-  const logout = (e) => {
-    e.preventDefault();
-    dispatch(sessionActions.logout());
-  };
-
-  return (
-    <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
-      {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
-      )}
-    </>
-  );
+    const logout = (e) => {
+        e.preventDefault();
+        dispatch(sessionActions.logout());
+    }
+    return(
+      <ProfileButtonSty>
+        <>
+        <img src ={faceButton} onClick = {openMenu}/>
+        {showMenu && <ProfileMenu />}
+        </>
+        </ProfileButtonSty>
+    )
 }
 
-export default ProfileButton;
+export default ProfileButton

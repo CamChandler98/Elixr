@@ -17,6 +17,7 @@ header {
 header a {
     text-decoration: none;
     color: slategray;
+    text-align:center;
 }
 header li{
     list-style: none;
@@ -37,10 +38,14 @@ header li{
     margin-top: 5px;
 }
 
-.right-side{
-    margin: 0px 20px;
+.left-side{
+    margin: 0px 10%;
 }
+.right-side{
+    margin-left: auto;
+    margin-right: 10%;
 
+}
 .active{
     color: rgb(47, 53, 59);
 }

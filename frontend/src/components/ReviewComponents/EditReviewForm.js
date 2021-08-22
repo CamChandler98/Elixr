@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
 import ReactSlider from "react-slider"
 import { useDispatch, useSelector } from "react-redux"
-import { addReview } from "../../store/reviews"
+import { addReview, editReview } from "../../store/reviews"
 import styled from "styled-components"
 import { getOneDrink } from "../../store/drinks"
 import cameraButton from '../DrinkComponents/images/thumbnail/photo-button.svg'
 import { Redirect } from "react-router-dom"
 
-const AddReviewSty = styled.div`
+const EditReviewSty = styled.div`
 h2{
     color: rgb(49 45 45 / 69%)
 }
@@ -109,7 +109,7 @@ const ReviewSliderSty = styled.div`
 
 
 `
-const AddReviewForm = ({drinkId , closeModal}) =>{
+const EditReviewForm = ({review ,drinkId , closeModal}) =>{
     const dispatch = useDispatch()
 
 
@@ -118,41 +118,24 @@ const AddReviewForm = ({drinkId , closeModal}) =>{
     },[])
 
     let drink = useSelector(state => state.drinks[drinkId])
-    const [content, setContent] = useState('')
-    const [rating , setRating] = useState(1)
-    const [image, setImage] = useState(null)
-    const [tempImgUrl, setTempImgUrl] = useState('')
+    const [content, setContent] = useState(review?.content)
+    const [rating , setRating] = useState(review?.rating)
     const userId = useSelector(state => state.session.user.id)
-    const updateFile = (e) => {
-        const file = e.target.files[0];
-        if (file){
-            setImage(file);
-            let tempUrl = URL.createObjectURL(e.target.files[0])
-            setTempImgUrl(tempUrl)
-        }
-      };
 
       const handleSubmit = async (e) =>{
           e.preventDefault()
-            dispatch(addReview({content,rating,image,userId,drinkId}))
+            dispatch(editReview({id: review?.id,content,rating,userId,drinkId}))
             setContent('')
             setRating(1)
-            setImage(null)
-            setTempImgUrl('')
             closeModal()
       }
 
-      const removeImage = (e) => {
-             e.preventDefault()
-            URL.revokeObjectURL(tempImgUrl)
-            setTempImgUrl('')
-      }
 
     return(
         <div>
-            <AddReviewSty>
+            <EditReviewSty>
             <form onSubmit={handleSubmit}>
-                <h2>{drink?.name}</h2>
+                <h2>Edit {drink?.name} Review</h2>
                 <div className= 'content-photo'>
                     <label htmlFor = 'review-content'></label>
                     <textarea
@@ -164,28 +147,11 @@ const AddReviewForm = ({drinkId , closeModal}) =>{
                         value = {content}
                     >
                     </textarea>
-                     <label htmlFor ='add-photo'>
-                    <input id ='add-photo'type="file" onChange={updateFile} />
-                       <img src = {tempImgUrl ? tempImgUrl: cameraButton} onClick ={tempImgUrl ? (e)=> {e.preventDefault()} : null}/>
-                       {tempImgUrl && <button className ='remove' onClick ={ e => {
-                           removeImage(e)
-                       }}>remove</button>}
-                    </label>
                     </div>
                 <div className ='rating-container'>
                     <label htmlFor = "rating">
-                       Was it Magical?
+                       Changed your Mind?
                     </label>
-                    {/* <select
-                        value = {rating}
-                        onChange = { e => setRating(e.target.value)}
-                    >
-                        <option value = {1}>1</option>
-                        <option value = {2}>2</option>
-                        <option value = {3}>3</option>
-                        <option value = {4}>4</option>
-                        <option value = {5}>5</option>
-                    </select> */}
                     <ReviewSliderSty>
                         <div className = 'slider-container'>
                     <ReactSlider
@@ -210,9 +176,9 @@ const AddReviewForm = ({drinkId , closeModal}) =>{
                 </div>
                 <button className= 'submit' type = 'submit'>Confirm</button>
             </form>
-            </AddReviewSty>
+            </EditReviewSty>
         </div>
     )
 }
 
-export default AddReviewForm
+export default EditReviewForm

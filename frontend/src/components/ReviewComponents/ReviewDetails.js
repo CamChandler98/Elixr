@@ -17,6 +17,8 @@ const ReviewDetailSty = styled.div`
     .review-image{
         display:flex;
         justify-content:center;
+        box-shadow: 0 1px 1px 0 rgb(0 0 0 / 10%);
+        padding: 1%
     }
     .user-pic{
         width: 775px;
@@ -32,25 +34,38 @@ const ReviewDetailSty = styled.div`
         box-sizing: border-box;
         padding: 10px 15px;
     }
+    a{
+        text-decoration: none;
+        color: rgb(198, 135, 231);
+        font-weight: 500;
+    }
+    a:hover{
+
+        color: rgb(95 44 121);
+        font-weight:bold;
+
+    }
+    .detail-link{
+        margin-top: 15px;
+    }
 `
 const ReviewDetails = ({reviewId}) => {
     let dispatch = useDispatch()
-    console.log('reviewid',reviewId)
+    // console.log('reviewid',reviewId)
     useEffect(() => {
-        dispatch(getOneReview(parseInt(reviewId)))
+        if(reviewId){
+        dispatch(getOneReview(parseInt(reviewId)))}
     },[reviewId,dispatch])
 
     let review = useSelector(state => state.reviews[reviewId])
 
-    
-
     return(
         <div className = 'review-details'>
-            {console.log(review)}
             {review &&
                     <ReviewDetailSty>
                        <div className = 'review-details'>
-                       <span className = 'review header'><NavLink to = {`/users/${review?.User?.username}`}>{review?.User?.username}</NavLink> is drinking <NavLink to = {`/drinks/${review?.drinkId}`}>{review?.Drink?.name}</NavLink> brewed by {review?.Drink?.User?.username} </span>
+                       <span className = 'review header'>
+                           <NavLink to = {`/users/${review?.User?.username}`}>{review?.User?.username}</NavLink> is drinking <NavLink to = {`/drinks/${review?.drinkId}`}>{review?.Drink?.name}</NavLink> brewed by <NavLink to ={`/users/${review?.Drink?.User?.username}`}>{review?.Drink?.User?.username}</NavLink> </span>
 
                        <div className = 'review-details-rating'>
                            <ReviewRating rating = {review.rating}/>
@@ -59,7 +74,9 @@ const ReviewDetails = ({reviewId}) => {
                         {review.imageUrl && <div className = 'review-image'>
                            <img className ='user-pic' src = {review?.imageUrl}></img>
                        </div>}
-
+                       <div className = 'detail-link'>
+                           <NavLink to= {`/reviews/${review.id}`}>view detailed review</NavLink>
+                       </div>
                    </div>
                 </ReviewDetailSty>
             }

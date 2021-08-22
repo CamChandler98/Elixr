@@ -9,7 +9,13 @@ let ReviewSty = styled.div`
     .reviews{
         display:flex;
         margin: 15%;
+        margin-top: 5%;
         flex-direction: column;
+    }
+    h1{
+        font-size: 30px;
+        align-self:center;
+        margin-bottom: 20px
     }
 `
 const LatestReviews = () => {
@@ -19,10 +25,11 @@ const LatestReviews = () => {
     },[])
     let reviewsState = useSelector(state => state.reviews)
     let allReviews = Object.values(reviewsState).reverse()
-    console.log(allReviews)
+    // console.log(allReviews)
         return(
             <ReviewSty>
             <div className = 'reviews'>
+                <h1>Latest Reviews</h1>
                 {allReviews && allReviews.map(review => {
                 return (
                     <ReviewDetails key = {review.id} reviewId= {review.id}></ReviewDetails>

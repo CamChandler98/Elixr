@@ -9,6 +9,7 @@ import { restoreCSRF, csrfFetch } from './store/csrf';
 import * as sessionActions from './store/session';
 import * as drinkActions from './store/drinks'
 import * as reviewActions from './store/reviews'
+import * as profileActions from './store/profile'
 
 import { ModalProvider } from './context/Modal';
 

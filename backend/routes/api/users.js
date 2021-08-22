@@ -3,6 +3,8 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const bcrypt = require('bcryptjs');
 
+const { Op } = require('sequelize');
+
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
@@ -29,6 +31,18 @@ const validateSignup = [
     handleValidationErrors,
   ];
 
+router.get('/:username', asyncHandler( async (req,res) => {
+    const {username} = req.params
+
+    let found  = await User.findOne({
+      where: {
+        username: {[Op.iLike]: '%' + username + '%'}
+      }
+    })
+    let user = found.toSafeObject()
+
+    res.json(user)
+}))
 router.post(
     '/',
     validateSignup,

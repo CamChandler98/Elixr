@@ -8,8 +8,9 @@ function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
   let sessionLinks;
+  let buttonCheck
   if (sessionUser) {
-    sessionLinks = (
+    buttonCheck = (
       <ProfileButton user={sessionUser} />
     );
   } else {
@@ -23,7 +24,7 @@ function Navigation({ isLoaded }){
 
   return (
     <header>
-    <div className = 'right-side'>
+    <div className = 'left-side'>
     <ul className = 'nav-links'>
         <NavLink exact to="/">
           <h2> Elixr</h2>
@@ -37,8 +38,11 @@ function Navigation({ isLoaded }){
             Categories
         </NavLink>
       </li>
-
     </ul>
+    </div>
+    <div className = 'right-side'>
+    {isLoaded && buttonCheck}
+
     </div>
     </header>
   );

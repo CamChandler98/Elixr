@@ -34,6 +34,7 @@ export const getAllReviews = () => async (dispatch) =>{
     let reviewList = await res.json()
 
     dispatch(load(reviewList))
+    return
 }
 export const removeReview = (reviewId) => async (dispatch) => {
     let res = await csrfFetch(`/api/reviews/${reviewId}`,{
@@ -43,6 +44,7 @@ export const removeReview = (reviewId) => async (dispatch) => {
     const trash = res.json()
 
     dispatch(remove(reviewId))
+    return
 }
 
 export const addReview = (review) => async (dispatch) => {
@@ -66,11 +68,12 @@ export const addReview = (review) => async (dispatch) => {
 
       const newReview = await res.json();
       dispatch(add(newReview));
+      return
 
 
 }
 export const editReview = (review) => async (dispatch) => {
-    const {image, rating, content, removeImg} = review
+    const {image, rating, content, removeImg, id} = review
 
     const formData = new FormData()
 
@@ -80,7 +83,8 @@ export const editReview = (review) => async (dispatch) => {
     formData.append('removeImg', removeImg)
 
     if(image) formData.append("image",image)
-    const res = await csrfFetch(`/api/reviews/:reviewId`, {
+
+    const res = await csrfFetch(`/api/reviews/${review.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "multipart/form-data",
@@ -90,6 +94,7 @@ export const editReview = (review) => async (dispatch) => {
 
       const updatedReview = await res.json();
       dispatch(add(updatedReview));
+      return
 }
 
 export const getDrinkReviews = (drinkId) => async (dispatch) =>{
@@ -98,6 +103,7 @@ export const getDrinkReviews = (drinkId) => async (dispatch) =>{
         const reviewList = await res.json()
         dispatch(load(reviewList))
     }
+    return
 }
 
 export const getUserReviews = (userId) => async (dispatch) =>{
@@ -106,6 +112,7 @@ export const getUserReviews = (userId) => async (dispatch) =>{
         const reviewList = await res.json()
         dispatch(user(reviewList))
     }
+    return
 }
 
 export const getOneReview = (reviewId) => async (dispatch) => {
@@ -113,7 +120,6 @@ export const getOneReview = (reviewId) => async (dispatch) => {
 
     if(res.ok){
         const review = await res.json(
-
         )
         dispatch(add(review))
     }
@@ -132,6 +138,7 @@ const reviewReducer = (state = {}, action) => {
             }
         }
         case ADD: {
+            if(!action.review){return ({...state})}
             if(!state[action.review.id]){
                 return{
                     ...state,
