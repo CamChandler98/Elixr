@@ -81,7 +81,7 @@ let SpalshPage = ({isLoaded}) => {
 
     if(sessionUser){
         return(
-            <Redirect to ={`/users/${sessionUser.username}`}/>
+            <Redirect to ={`/categories`}/>
         )
     }
     let body = document.body
