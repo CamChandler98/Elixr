@@ -9,7 +9,15 @@ const router = express.Router();
 const validateDrink = [
     check('name')
         .exists({checkFalsy: true})
-        .withMessage('Names are powerful, your potion needs one'),
+        .withMessage('Names are powerful, your potion needs one')
+        .custom((value) => {
+            return Drink.findOne({ where: { name: value } })
+                .then((drink) => {
+                    if (drink) {
+                        return Promise.reject('It looks like there is already a drink with that name');
+                    }
+                });
+        }),
     check('description')
         .exists({checkFalsy: true})
         .withMessage('Please give your potion a description'),

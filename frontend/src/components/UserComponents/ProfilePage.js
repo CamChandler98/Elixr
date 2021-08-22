@@ -7,6 +7,7 @@ import { getUserReviews } from "../../store/reviews"
 import DrinkDetails from "../DrinkComponents/DrinkDetailComponents/DrinkDetails"
 import UserReviews from '../ReviewComponents/UserReviews'
 import styled from "styled-components"
+import DrinkFormModal from "../DrinkComponents/AddDrinkFormModal"
 
 let ProfileSty = styled.div`
     .main-content{
@@ -135,9 +136,12 @@ const ProfilePage = () => {
         </div>
         <div className = 'focus-content'>
             {reviews && focus === 'user' && <UserReviews reviews = {reviews} />}
+            {drinks && focus === 'drinks' && <DrinkFormModal/>}
             {drinks && focus === 'drinks' && drinks.map(drink => {
                 return (
+                    <>
                     <DrinkDetails key = {drink.id} drinkId = {drink.id}/>
+                    </>
                 )
             })}
 
