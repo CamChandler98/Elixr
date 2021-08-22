@@ -3,8 +3,6 @@ import styled from 'styled-components'
 import DrinkCategoriesPage from './DrinkCategoriesPage'
 
 const Image = styled.div`
-@import url('https://fonts.googleapis.com/css2?family=Lato&family=Raleway:wght@300;500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Charmonman:wght@400;700&family=Cookie&family=Mystery+Quest&display=swap');
    .catimg{
        width:100px;
     height: 100px;
