@@ -5,16 +5,14 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-// import DrinkCategoriesPage from "./components/DrinkComponents/DrinkCategoriesPage";
 
 import CategorySty from "./components/DrinkComponents/Category-PageStyle";
 import CategoryPage from "./components/DrinkComponents/Category-Page";
 import DrinkPage from "./components/DrinkComponents/DrinkPage";
-import AddReviewForm from "./components/ReviewComponents/AddReviewForm";
-import UserReviews from "./components/ReviewComponents/UserReviews";
 import LatestReviews from "./components/ReviewComponents/LatestReviews";
 import ReviewPage from "./components/ReviewComponents/ReviewPage";
 import SpalshPage from "./components/ReviewComponents/SpalshPage";
+import ProfilePage from "./components/UserComponents/ProfilePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,7 +28,6 @@ function App() {
       <Route exact path = '/'>
         <SpalshPage isLoaded = {isLoaded}/>
       </Route>
-
       <>
       <Navigation isLoaded={isLoaded} />
       <Route exact path ='/thecoven'>
@@ -54,6 +51,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path = '/users/:username'>
+            <ProfilePage />
           </Route>
         </Switch>
 

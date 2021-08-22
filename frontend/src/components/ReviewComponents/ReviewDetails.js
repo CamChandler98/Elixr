@@ -64,7 +64,8 @@ const ReviewDetails = ({reviewId}) => {
             {review &&
                     <ReviewDetailSty>
                        <div className = 'review-details'>
-                       <span className = 'review header'><NavLink to = {`/users/${review?.User?.username}`}>{review?.User?.username}</NavLink> is drinking <NavLink to = {`/drinks/${review?.drinkId}`}>{review?.Drink?.name}</NavLink> brewed by {review?.Drink?.User?.username} </span>
+                       <span className = 'review header'>
+                           <NavLink to = {`/users/${review?.User?.username}`}>{review?.User?.username}</NavLink> is drinking <NavLink to = {`/drinks/${review?.drinkId}`}>{review?.Drink?.name}</NavLink> brewed by <NavLink to ={`/users/${review?.Drink?.User?.username}`}>{review?.Drink?.User?.username}</NavLink> </span>
 
                        <div className = 'review-details-rating'>
                            <ReviewRating rating = {review.rating}/>
