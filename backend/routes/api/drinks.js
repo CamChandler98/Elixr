@@ -1,10 +1,22 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
+const { check } = require('express-validator');
 const {Drink, Review, User, Category} = require('../../db/models')
+const { handleValidationErrors } = require('../../utils/validation');
+
 const router = express.Router();
 
+const validateDrink = [
+    check('name')
+        .exists({checkFalsy: true})
+        .withMessage('Names are powerful, your potion needs one'),
+    check('description')
+        .exists({checkFalsy: true})
+        .withMessage('Please give your potion a description'),
+        handleValidationErrors
+]
 
-router.post('/', asyncHandler(async (req, res)=> {
+router.post('/', validateDrink, asyncHandler(async (req, res)=> {
     const {name, description, creatorId, categoryId } = req.body
     const drink = await Drink.makeDrink( {name, description, creatorId, categoryId })
     return res.json(drink)

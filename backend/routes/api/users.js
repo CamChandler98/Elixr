@@ -15,11 +15,27 @@ const validateSignup = [
     check('email')
       .exists({ checkFalsy: true })
       .isEmail()
-      .withMessage('Please provide a valid email.'),
+      .withMessage('Please provide a valid email.')
+      .custom((value) => {
+        return User.findOne({ where: { email: value } })
+            .then((user) => {
+                if (user) {
+                    return Promise.reject('The provided Email Address is already in use by another account');
+                }
+            });
+    }),
     check('username')
       .exists({ checkFalsy: true })
       .isLength({ min: 4 })
-      .withMessage('Please provide a username with at least 4 characters.'),
+      .withMessage('Please provide a username with at least 4 characters.')
+      .custom((value) => {
+        return User.findOne({ where: { username: value } })
+            .then((user) => {
+                if (user) {
+                    return Promise.reject('The provided username is unavailable');
+                }
+            });
+    }),
     check('username')
       .not()
       .isEmail()
@@ -28,6 +44,15 @@ const validateSignup = [
       .exists({ checkFalsy: true })
       .isLength({ min: 6 })
       .withMessage('Password must be 6 characters or more.'),
+      check('confirmPassword')
+      .exists({ checkFalsy: true })
+      .withMessage('Must confirm your password')
+      .custom((value, { req }) => {
+          if (value !== req.body.password) {
+              throw new Error('Confirm Password does not match Password');
+          }
+          return true;
+      }),
     handleValidationErrors,
   ];
 
