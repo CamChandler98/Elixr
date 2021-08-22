@@ -111,9 +111,9 @@ const Image = styled.div`
 const CategorySty = ({isLoaded}) => {
     return (
         <>
-        {isLoaded && <Image>
+         <Image>
             <DrinkCategoriesPage />
-        </Image>}
+        </Image>
         </>
     )
 }
