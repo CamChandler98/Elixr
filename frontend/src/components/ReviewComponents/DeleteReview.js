@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux"
-import { Redirect, useHistory } from "react-router-dom"
+import {  useHistory } from "react-router-dom"
 import styled from "styled-components"
 import { removeReview } from "../../store/reviews"
 
@@ -30,7 +30,7 @@ let DeleteSty = styled.div`
         font-family: "Lato";
 
     }
- 
+
 `
 let DeleteReview = ({reviewId , closeModal}) =>{
     let dispatch = useDispatch()

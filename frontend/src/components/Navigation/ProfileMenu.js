@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
 import styled from "styled-components"
-import ProfileButton from "./ProfileButton"
+// import ProfileButton from "./ProfileButton"
 
 let ProfileMenuSty = styled.div`
     position: absolute;

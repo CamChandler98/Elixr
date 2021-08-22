@@ -1,6 +1,4 @@
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { getUserReviews } from "../../store/reviews"
+
 import ReviewDetails from "./ReviewDetails"
 const UserReviews = ({reviews}) => {
     return(

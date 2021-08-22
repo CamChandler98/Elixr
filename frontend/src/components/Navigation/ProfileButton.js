@@ -4,12 +4,15 @@ import * as sessionActions from '../../store/session';
 import ProfileMenu from "./ProfileMenu";
 import faceButton from '../DrinkComponents/images/thumbnail/profile-icon.svg'
 import styled from 'styled-components'
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const ProfileButtonSty = styled.div`
   img{
     height: 60px;
     margin-top: 10px
+  }
+  img:hover{
+    cursor: pointer;
   }
 `
 
@@ -42,7 +45,7 @@ let ProfileButton = () => {
     return(
       <ProfileButtonSty>
         <>
-        <img src ={faceButton} onClick = {openMenu}/>
+        <img src ={faceButton} alt = 'profile' onClick = {openMenu}/>
         {showMenu && <ProfileMenu logout = {logout} />}
         </>
         </ProfileButtonSty>

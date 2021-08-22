@@ -22,7 +22,7 @@ const LatestReviews = () => {
     let dispatch = useDispatch()
     useEffect(()=> {
         dispatch(getAllReviews())
-    },[])
+    },[dispatch])
     let reviewsState = useSelector(state => state.reviews)
     let allReviews = Object.values(reviewsState).reverse()
     // console.log(allReviews)

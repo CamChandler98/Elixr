@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 import ReactSlider from "react-slider"
 import { useDispatch, useSelector } from "react-redux"
-import { addReview, editReview } from "../../store/reviews"
+import {  editReview } from "../../store/reviews"
 import styled from "styled-components"
 import { getOneDrink } from "../../store/drinks"
-import cameraButton from '../DrinkComponents/images/thumbnail/photo-button.svg'
-import { Redirect } from "react-router-dom"
+// import cameraButton from '../DrinkComponents/images/thumbnail/photo-button.svg'
+// import { Redirect } from "react-router-dom"
 
 const EditReviewSty = styled.div`
 h2{
@@ -115,7 +115,7 @@ const EditReviewForm = ({review ,drinkId , closeModal}) =>{
 
     useEffect(()=>{
         dispatch(getOneDrink(drinkId))
-    },[])
+    },[dispatch,drinkId])
 
     let drink = useSelector(state => state.drinks[drinkId])
     const [content, setContent] = useState(review?.content)

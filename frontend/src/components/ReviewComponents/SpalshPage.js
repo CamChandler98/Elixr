@@ -1,9 +1,9 @@
-import { useEffect } from 'react'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 import splashImage from '../DrinkComponents/images/thumbnail/logo.svg'
-import background from '../DrinkComponents/images/thumbnail/background.svg'
+
 import * as sessionActions from '../../store/session';
 
 let SplashSty =styled.div `
@@ -98,7 +98,7 @@ let SpalshPage = ({isLoaded}) => {
             <div className = 'container'>
             <div className = 'left-side'>
             <h1 className = 'logo'>Welcome!</h1>
-            <img src = {splashImage}>
+            <img alt ='splash' src = {splashImage}>
             </img>
             <h1 className = 'logo'>
                 Elixr

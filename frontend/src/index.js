@@ -28,6 +28,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.sessionActions = sessionActions;
   window.drinkActions = drinkActions;
   window.reviewActions = reviewActions
+  window.profileActions = profileActions
 }
 
 function Root() {

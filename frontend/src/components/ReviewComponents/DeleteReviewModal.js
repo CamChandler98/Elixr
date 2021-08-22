@@ -16,6 +16,9 @@ let ButtonSty = styled.div`
             border-radius: 3px;
             font-size: 16px
     }
+    button:hover{
+      background-color: rgb(148 54 118);
+    }
 `
 function DeleteReviewModal({reviewId}) {
     const [showModal, setShowModal] = useState(false);

@@ -6,10 +6,10 @@ const REMOVE ='reviews/remove'
 const USER = 'reviews/user'
 const DRINK = 'reviews/drink'
 
-const drink = (drinkReviews) => ({
-    type: DRINK,
-    drinkReviews
-})
+// const drink = (drinkReviews) => ({
+//     type: DRINK,
+//     drinkReviews
+// })
 
 const user = (userReviews) => ({
     type: USER,
@@ -37,11 +37,11 @@ export const getAllReviews = () => async (dispatch) =>{
     return
 }
 export const removeReview = (reviewId) => async (dispatch) => {
-    let res = await csrfFetch(`/api/reviews/${reviewId}`,{
+    await csrfFetch(`/api/reviews/${reviewId}`,{
         method: 'delete'
     })
 
-    const trash = res.json()
+
 
     dispatch(remove(reviewId))
     return
@@ -73,7 +73,7 @@ export const addReview = (review) => async (dispatch) => {
 
 }
 export const editReview = (review) => async (dispatch) => {
-    const {image, rating, content, removeImg, id} = review
+    const {image, rating, content, removeImg, } = review
 
     const formData = new FormData()
 

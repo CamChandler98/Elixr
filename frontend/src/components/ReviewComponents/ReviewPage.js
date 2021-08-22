@@ -57,14 +57,12 @@ const ReviewPageSty = styled.div`
     }
     button:hover{
         cursor: pointer;
-        background-color: rgb(198, 135, 231);
     }
     a{
         text-decoration:none;
     }
     a:hover{
         transform: scale(1.01);
-        color: rgba(169,140,209,1)
     }
 
 `
@@ -81,14 +79,14 @@ const ReviewPage = () =>{
     useEffect(()=>{
         if(reviewId){
         dispatch(getOneReview(reviewId))}
-    },[])
+    },[dispatch,reviewId])
 
     let review = useSelector(state => state.reviews[reviewId])
 
     useEffect(()=>{
         if(review){
             dispatch(getOneDrink(review?.drinkId))}
-        },[review?.drinkId])
+        },[review?.drinkId,review,dispatch])
 
         useEffect(()=> {
             if(userId && review?.userId === userId){
@@ -119,7 +117,7 @@ const ReviewPage = () =>{
                 </div>
                 </div>
                 <div className =' review-image'>
-                <img src = {review?.imageUrl}/>
+                <img alt= 'review' src = {review?.imageUrl}/>
                 </div>
                 </div>
             }

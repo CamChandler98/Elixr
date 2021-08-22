@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import EditReviewForm from './EditReviewForm';
-import reviewButton from '../DrinkComponents/images/thumbnail/check-in-button.svg'
+// import reviewButton from '../DrinkComponents/images/thumbnail/check-in-button.svg'
 import styled from 'styled-components';
 
 
@@ -19,7 +19,7 @@ let EditSty = styled.div`
 
     button:hover{
         cursor: pointer;
-        background-color: rgb(198, 135, 231);
+        background-color: rgb(144 91 173);
     }
 `
 

@@ -72,7 +72,7 @@ const ReviewDetails = ({reviewId}) => {
                            <p>{review?.content}</p>
                        </div>
                         {review.imageUrl && <div className = 'review-image'>
-                           <img className ='user-pic' src = {review?.imageUrl}></img>
+                           <img alt = 'user' className ='user-pic' src = {review?.imageUrl}></img>
                        </div>}
                        <div className = 'detail-link'>
                            <NavLink to= {`/reviews/${review.id}`}>view detailed review</NavLink>

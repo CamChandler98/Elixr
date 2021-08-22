@@ -46,6 +46,7 @@ let ProfileSty = styled.div`
         height: 50px;
         align-items:center;
         gap: 15px;
+        cursor: pointer
     }
     .focused{
         color: rgb(117 66 144);
@@ -74,6 +75,7 @@ const ProfilePage = () => {
                 break;
             case 'drinks':
                 setFocus('drinks')
+                break;
             default:
                 break;
         }
@@ -82,7 +84,7 @@ const ProfilePage = () => {
     useEffect(()=>{
 
         dispatch(getUser(username))
-    },[username])
+    },[username,dispatch])
 
     let user = useSelector(state => state?.profile)
 
@@ -90,7 +92,7 @@ const ProfilePage = () => {
         if(user.id){
         dispatch(getUserReviews(user.id))
         }
-    },[user.id])
+    },[user.id,dispatch])
 
     let userId = useSelector(state => state.session.user?.id)
 
@@ -101,7 +103,7 @@ const ProfilePage = () => {
         }else{
             setOwner(false)
         }
-    },[ user.id, userId])
+    },[ user.id, userId,dispatch])
 
 
 
@@ -110,7 +112,7 @@ const ProfilePage = () => {
     useEffect(()=> {
 
         dispatch(getDrinks())
-    },[])
+    },[dispatch])
 
     let drinksState = useSelector( state => state.drinks)
 

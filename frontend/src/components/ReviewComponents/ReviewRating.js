@@ -30,12 +30,12 @@ const ReviewRating = ({rating}) =>{
                 {controlArr.map( num => {
                     if(num > normalizedRating){
                         return(
-                            <img className = 'icon' src = {reviewIcon}>
+                            <img key = {num} alt= 'rating' className = 'icon' src = {reviewIcon}>
                              </img>
                         )
                     }else{
                         return(
-                            <img className = 'icon score' src = {reviewIcon}>
+                            <img key = {num} alt= 'rating' className = 'icon score' src = {reviewIcon}>
                              </img>
                         )
                     }

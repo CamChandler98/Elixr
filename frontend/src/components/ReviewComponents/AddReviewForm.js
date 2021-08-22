@@ -5,7 +5,7 @@ import { addReview } from "../../store/reviews"
 import styled from "styled-components"
 import { getOneDrink } from "../../store/drinks"
 import cameraButton from '../DrinkComponents/images/thumbnail/photo-button.svg'
-import { Redirect } from "react-router-dom"
+// import { Redirect } from "react-router-dom"
 
 const AddReviewSty = styled.div`
 h2{
@@ -115,7 +115,7 @@ const AddReviewForm = ({drinkId , closeModal}) =>{
 
     useEffect(()=>{
         dispatch(getOneDrink(drinkId))
-    },[])
+    },[dispatch, drinkId])
 
     let drink = useSelector(state => state.drinks[drinkId])
     const [content, setContent] = useState('')
@@ -166,7 +166,7 @@ const AddReviewForm = ({drinkId , closeModal}) =>{
                     </textarea>
                      <label htmlFor ='add-photo'>
                     <input id ='add-photo'type="file" onChange={updateFile} />
-                       <img src = {tempImgUrl ? tempImgUrl: cameraButton} onClick ={tempImgUrl ? (e)=> {e.preventDefault()} : null}/>
+                       <img src = {tempImgUrl ? tempImgUrl: cameraButton} onClick ={tempImgUrl ? (e)=> {e.preventDefault()} : null} alt = 'submit-phot'/>
                        {tempImgUrl && <button className ='remove' onClick ={ e => {
                            removeImage(e)
                        }}>remove</button>}
