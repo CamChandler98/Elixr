@@ -81,7 +81,7 @@ const ProfilePage = () => {
     useEffect(()=>{
         console.log('getting name')
         dispatch(getUser(username))
-    },[])
+    },[username])
 
     let user = useSelector(state => state?.profile)
 

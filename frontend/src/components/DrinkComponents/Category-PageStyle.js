@@ -112,9 +112,11 @@ const Image = styled.div`
 
 const CategorySty = () => {
     return (
-        <Image>
+        <>
+        {Image && <Image>
             <DrinkCategoriesPage />
-        </Image>
+        </Image>}
+        </>
     )
 }
 

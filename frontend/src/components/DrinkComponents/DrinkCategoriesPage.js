@@ -17,7 +17,7 @@ const DrinkCategoriesPage = ({isLoaded}) => {
     return (
         <div className = 'categories-container'>
             <div className = 'title'><p>Pick Your Poison</p></div>
-           {categories.map(category => {
+           {categories && categories.map(category => {
                return (
                    <div key = {category.id}className = {`magic ${category.name.toLowerCase()}`}>
                        <div className = 'inner-cat'>
