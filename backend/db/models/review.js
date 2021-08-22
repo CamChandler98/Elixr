@@ -4,9 +4,8 @@ module.exports = (sequelize, DataTypes) => {
   const Review = sequelize.define('Review', {
     content: {
         type: DataTypes.STRING,
-        allowNull: false,
         validate:{
-          len: [3,2000]
+          len: [0,2000]
         }
       },
     rating: {
