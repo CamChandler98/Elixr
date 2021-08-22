@@ -47,7 +47,7 @@ const DrinkDetailsUnstyled = ({drinkId}) =>{
     },[dispatch,drinkId])
 
     let drink = useSelector(state => state.drinks[drinkId])
-    console.log('drink from drink details', drink)
+
     return (
         <>
        {drink && <div className = 'drink-details'>

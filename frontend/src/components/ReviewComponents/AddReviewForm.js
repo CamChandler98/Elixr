@@ -166,7 +166,7 @@ const AddReviewForm = ({drinkId , closeModal}) =>{
                     </textarea>
                      <label htmlFor ='add-photo'>
                     <input id ='add-photo'type="file" onChange={updateFile} />
-                       <img src = {tempImgUrl ? tempImgUrl: cameraButton} onClick ={tempImgUrl ? (e)=> {e.preventDefault()} : console.log('hi')}/>
+                       <img src = {tempImgUrl ? tempImgUrl: cameraButton} onClick ={tempImgUrl ? (e)=> {e.preventDefault()} : null}/>
                        {tempImgUrl && <button className ='remove' onClick ={ e => {
                            removeImage(e)
                        }}>remove</button>}

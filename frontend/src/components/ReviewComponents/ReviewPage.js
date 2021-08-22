@@ -71,7 +71,7 @@ const ReviewPageSty = styled.div`
 
 
 const ReviewPage = () =>{
-    console.log('you got here!')
+
     const dispatch = useDispatch()
     let {reviewId} = useParams()
     let [owner,setOwner] = useState(false)
@@ -94,8 +94,7 @@ const ReviewPage = () =>{
             if(userId && review?.userId === userId){
                 setOwner(true)
             }else{
-                console.log('reviewId', review?.userId)
-                console.log('userId', userId)
+
             }
         },[review, userId])
 

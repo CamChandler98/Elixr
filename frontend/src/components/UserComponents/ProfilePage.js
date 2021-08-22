@@ -54,8 +54,8 @@ let ProfileSty = styled.div`
 
 const ProfilePage = () => {
     const [focus, setFocus] = useState('user')
+    let [owner,setOwner] = useState(false)
     let {username} = useParams()
-    console.log('username',username)
 
     const switchFocus = (target,e) =>{
         if( focus === target) return
@@ -79,23 +79,35 @@ const ProfilePage = () => {
     }
     let dispatch = useDispatch()
     useEffect(()=>{
-        console.log('getting name')
+
         dispatch(getUser(username))
     },[username])
 
     let user = useSelector(state => state?.profile)
 
     useEffect(()=> {
-        console.log('getting reviews')
         if(user.id){
         dispatch(getUserReviews(user.id))
         }
     },[user.id])
 
+    let userId = useSelector(state => state.session.user?.id)
+
+    useEffect(()=> {
+
+        if(userId && user?.id === userId){
+            setOwner(true)
+        }else{
+            setOwner(false)
+        }
+    },[ user.id, userId])
+
+
+
     let reviews = useSelector (state => state.reviews.userReviews)
 
     useEffect(()=> {
-        console.log('getting drinks')
+
         dispatch(getDrinks())
     },[])
 
@@ -103,7 +115,8 @@ const ProfilePage = () => {
 
     let drinks = Object.values(drinksState).filter(drink => drink.creatorId === user.id)
 
-    console.log('drinks', drinks)
+    console.log(owner, 'ownerrerr')
+
     return (
         <ProfileSty>
         <div className = 'main-content'>
@@ -114,8 +127,8 @@ const ProfilePage = () => {
             {drinks && <h3>Brewed {drinks.length} {drinks.length === 1   ? 'Potion': 'Potions'}</h3>}
         </div>
         <div className = 'switch-bar'>
-            <span className ='bar-item' onClick = {(e)=> switchFocus('user',e)}>Your Reviews</span>
-            <span className ='bar-item' onClick = {(e)=> switchFocus('drinks',e)}>Your Drinks</span>
+            <span className ='bar-item' onClick = {(e)=> switchFocus('user',e)}>{owner ? 'Your': user?.username} Reviews</span>
+            <span className ='bar-item' onClick = {(e)=> switchFocus('drinks',e)}>{owner ? 'Your': user?.username} Drinks</span>
         </div>
         <div className = 'focus-content'>
             {reviews && focus === 'user' && <UserReviews reviews = {reviews} />}
