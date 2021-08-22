@@ -36,13 +36,13 @@ const DrinkTextDetails = ({drink}) =>{
                 <div className = 'drink-detail'>
                     <img src = {thumbImages[drink?.categoryId]} alt ={`${drink?.Category.name} thumbnail`}></img>
                     <div className = 'text-details'>
-                    <NavLink to = {`/drinks/${drink?.id}`}>
+                    <NavLink className = 'link-text' to = {`/drinks/${drink?.id}`}>
                     <h2 className = 'link-text'>{drink?.name}</h2>
                     </NavLink>
-                    <NavLink to = {`/users/${drink?.User.username}`}>
+                    <NavLink className = 'link-text'to = {`/users/${drink?.User.username}`}>
                     <h3 className = 'link-text'>by {drink?.User.username}</h3>
                     </NavLink>
-                    <NavLink to ={`/categories/${drink?.Category.id}/${drink?.Category.name}`}>
+                    <NavLink className = 'link-text' to ={`/categories/${drink?.Category.id}/${drink?.Category.name}`}>
                     <h3 className = 'link-text'>{drink?.Category.name}</h3>
                     </NavLink>
                     </div>
